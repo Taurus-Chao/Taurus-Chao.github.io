@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Blog," />
+  <meta name="keywords" content="数据结构与算法," />
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="主要的功能及配置可以参考：  使用GitHub&#x2F;GitLab&#x2F;码云搭建个人博客 Next使用文档  本文主要说明上述文档没有提及的点。">
-<meta name="keywords" content="Blog">
+<meta name="description" content="前言对《数据结构与算法分析——C语言描述》中算法设计技巧的总结。">
+<meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客框架的Next主题配置">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;Theme-Next&#x2F;index.html">
+<meta property="og:title" content="算法设计技巧总结">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;28&#x2F;%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="主要的功能及配置可以参考：  使用GitHub&#x2F;GitLab&#x2F;码云搭建个人博客 Next使用文档  本文主要说明上述文档没有提及的点。">
+<meta property="og:description" content="前言对《数据结构与算法分析——C语言描述》中算法设计技巧的总结。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-27T17:19:01.501Z">
+<meta property="og:updated_time" content="2019-10-28T14:28:31.087Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/27/Theme-Next/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/10/28/算法设计技巧总结/"/>
 
 
 
 
 
-  <title>Hexo博客框架的Next主题配置 | ChaosHill</title>
+  <title>算法设计技巧总结 | ChaosHill</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Theme-Next/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaos">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo博客框架的Next主题配置</h1>
+          <h1 class="post-title" itemprop="name headline">算法设计技巧总结</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T21:12:11+08:00">
-                2019-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T22:27:39+08:00">
+                2019-10-28
               </time>
             
 
@@ -349,22 +349,49 @@
       
 
       
-        <p>主要的功能及配置可以参考：</p>
-<ul>
-<li><a href="https://dp2px.com/2017/11/15/hexonext/" target="_blank" rel="noopener">使用GitHub/GitLab/码云搭建个人博客</a></li>
-<li><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Next使用文档</a></li>
-</ul>
-<p>本文主要说明上述文档没有提及的点。<br><a id="more"></a></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对《数据结构与算法分析——C语言描述》中算法设计技巧的总结。<br><a id="more"></a></p>
 <hr>
-<h1 id="一、菜单项的设置"><a href="#一、菜单项的设置" class="headerlink" title="一、菜单项的设置"></a>一、菜单项的设置</h1><h3 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h3><p>例如新建标签菜单选项：<code>hexo new page &#39;tags&#39;</code></p>
-<blockquote>
-<p>此时会在hexo &gt; source文件夹中会生成一个tags文件夹。</p>
-</blockquote>
-<p>文件夹内有index.md文件，即我们点击“标签”菜单项所弹出的页面，我们可以自己编辑。<br>修改index.md文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2019-10-26 23:50:36</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false #关闭评论</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
-<h3 id="修改主题的配置文件"><a href="#修改主题的配置文件" class="headerlink" title="修改主题的配置文件"></a>修改主题的配置文件</h3><p><code>$ vim themes/next/_config.yml</code><br>在menu选项中设定你需要的菜单项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"># Menu Settings</span><br><span class="line"># ---------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash from link value (/archives -&gt; archives).</span><br><span class="line"># Usage: `Key: /link/ || icon`</span><br><span class="line"># Key is the name of menu item. If translate for this menu will find in languages - this translate will be loaded; if not - Key name will be used. Key is case-senstive.</span><br><span class="line"># Value before `||` delimeter is the target link.</span><br><span class="line"># Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.</span><br><span class="line">menu:</span><br><span class="line">  home: /||home</span><br><span class="line">  tags: /tags/|| tags</span><br><span class="line">  #categories: /categories/|| th</span><br><span class="line">  #archives: /archives/|| archive</span><br><span class="line">  #schedule: /schedule/|| calendar</span><br><span class="line">  #sitemap: /sitemap.xml|| sitemap</span><br><span class="line">  commonweal: /404.html/|| heartbeat</span><br><span class="line">  about: /about||user</span><br><span class="line"></span><br><span class="line"># Enable/Disable menu icons.</span><br><span class="line">menu_icons:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure><br>注意是<code>Key: /link/|| icon</code>之后就不用再menu_icons中设置了。<code>||</code>前没有空格，与官方设定不同，若按官方设定会进不到指定页面。按官方文档设置会丢失icon图标。</p>
-<h1 id="二、图片存放位置"><a href="#二、图片存放位置" class="headerlink" title="二、图片存放位置"></a>二、图片存放位置</h1><p>所有图片都放在了themes/next/source/uploads,博客文章的图片路径可以直接用：<br><code>/uploads/图片全名</code><br>因为主题文件夹source文件内的所有文件都会放在发布的public文件夹内，因此404.html也要放在themes/next/source/内，自动生成到public文件夹内。<br>也就是说，上传到服务器的文件夹public包含的是根目录的source文件夹内所有文件和主题目录的source文件夹内所有文件。</p>
-<h1 id="三、站点首页不显示文章全文"><a href="#三、站点首页不显示文章全文" class="headerlink" title="三、站点首页不显示文章全文"></a>三、站点首页不显示文章全文</h1><p>可以通过在文章使用<code>&lt;!-- more --&gt;</code>标志来精确控制文章的摘要预览，比如这篇文章就是在这个段落的末尾添加了该标志，所以本文在首页的预览就会显示到这个段落为止。</p>
-<h1 id="四、Markdown编写的latex公式无法显示"><a href="#四、Markdown编写的latex公式无法显示" class="headerlink" title="四、Markdown编写的latex公式无法显示"></a>四、Markdown编写的latex公式无法显示</h1><p>参考：<a href="https://blog.csdn.net/wgshun616/article/details/81019687" target="_blank" rel="noopener">Hexo 的 Next 主题中渲染 MathJax 数学公式</a></p>
+<h1 id="一、贪婪算法"><a href="#一、贪婪算法" class="headerlink" title="一、贪婪算法"></a>一、贪婪算法</h1><h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><p>分阶段工作，在每一个工作阶段，可以认为所做决定是好的，而不考虑将来的后果。如果局部最优能达到全局最优，则算法是正确的，否则只是次最优解。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ol>
+<li>找零钱问题。</li>
+<li>Dijkstra算法：图论问题。用于解决单源最短路径问题。</li>
+<li>Prim算法：图论问题。基本上与Dijkstra算法相同，用于形成无向图的最小生成树(连接所有顶点的总价值最低的数)。</li>
+<li>调度问题：<ul>
+<li>使平均完成时间最小，需要优先完成更短的作业。</li>
+<li>使最后完成时间最小，属于NPC问题。</li>
+</ul>
+</li>
+<li>Huffman编码：每次树的合并只考虑当前权最短。</li>
+<li>近似装箱问题：(NP问题)<ul>
+<li>联机算法：当前工作完成，才可进行下面的工作。包括：下项适合算法、首次适合算法、最佳适合算法。</li>
+<li>脱机算法：能够观察全部的物品之后再算出答案，自然比联机算法更优。做法是排序，包括：首次适合递减算法、最佳适合递减算法。</li>
+</ul>
+</li>
+</ol>
+<h1 id="二、分治算法"><a href="#二、分治算法" class="headerlink" title="二、分治算法"></a>二、分治算法</h1><h2 id="主要思想-1"><a href="#主要思想-1" class="headerlink" title="主要思想"></a>主要思想</h2><p>分：递归解决较小的问题（BASE情况除外）。<br>治：从子问题的解构建原问题的解。</p>
+<h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><ol>
+<li>最大子序和问题</li>
+<li>树的遍历</li>
+<li>归并排序及快速排序</li>
+<li>最近点问题：在平面上的点集中寻找一对最近的点。</li>
+<li>选择问题：在N个元素中选出第K小的元素，采用快速排序的变体达到平均运行时间为O(N)。枢纽的选取很重要，采用五分化中项的中项。</li>
+<li>运算问题的理论改进：例如将O(N^2) 的整数乘法降低为O(N^1.59)。 O(N^3) 的矩阵乘法降低为O(N^2.81)。</li>
+</ol>
+<h1 id="三、动态规划"><a href="#三、动态规划" class="headerlink" title="三、动态规划"></a>三、动态规划</h1><h2 id="主要思想-2"><a href="#主要思想-2" class="headerlink" title="主要思想"></a>主要思想</h2><p>有些问题的递归解法虽然逻辑简单，但是时间复杂度太高，重复计算太多，例如斐波那契数列递归解法。利用额外的空间复杂度来记录一些子问题的答案，将递归算法重新写成非递归算法，即动态规划。</p>
+<h2 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h2><ol>
+<li>斐波那契数列的线性算法。</li>
+<li>一些递归表达式的解法。</li>
+<li>矩阵乘法的顺序安排。</li>
+<li>最优二叉查找树（类似huffman方法的贪婪算法并不能最好的解决）</li>
+<li>所有点对的最短路径。</li>
+</ol>
+<h1 id="四、随机化算法"><a href="#四、随机化算法" class="headerlink" title="四、随机化算法"></a>四、随机化算法</h1><h1 id="五、回溯算法"><a href="#五、回溯算法" class="headerlink" title="五、回溯算法"></a>五、回溯算法</h1><h2 id="主要思想-3"><a href="#主要思想-3" class="headerlink" title="主要思想"></a>主要思想</h2><p>穷举搜索的巧妙实现。到了不合适的地步就往回一步，后面不再考虑。</p>
+<h2 id="例子-3"><a href="#例子-3" class="headerlink" title="例子"></a>例子</h2><ol>
+<li>收费公路重建问题：根据站点间的距离，放置站点。</li>
+<li>博弈问题：极小极大策略。改进技术：裁剪。</li>
+</ol>
+<hr>
+<p>后续可能会用代码实现上述问题。</p>
 
       
     </div>
@@ -406,7 +433,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Blog/" rel="tag"># Blog</a>
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
           
         </div>
       
@@ -419,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/27/Blog/" rel="next" title="Hexo博客框架的搭建与部署">
-                <i class="fa fa-chevron-left"></i> Hexo博客框架的搭建与部署
+              <a href="/2019/10/28/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E5%92%8C%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE/" rel="next" title="机器学习中的最大似然和均方误差">
+                <i class="fa fa-chevron-left"></i> 机器学习中的最大似然和均方误差
               </a>
             
           </div>
@@ -429,8 +456,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/27/Gradient-descent-and-Newton-algorithm/" rel="prev" title="梯度下降法和牛顿法">
-                梯度下降法和牛顿法 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/10/28/%E5%AF%BB%E6%89%BE%E5%B9%B3%E9%9D%A2%E7%82%B9%E9%9B%86%E4%B8%AD%E4%B8%A4%E7%82%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%9D%E7%A6%BB/" rel="prev" title="寻找平面点集中两点的最短距离">
+                寻找平面点集中两点的最短距离 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -631,7 +658,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、菜单项的设置"><span class="nav-number">1.</span> <span class="nav-text">一、菜单项的设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建页面"><span class="nav-number">1.0.1.</span> <span class="nav-text">新建页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改主题的配置文件"><span class="nav-number">1.0.2.</span> <span class="nav-text">修改主题的配置文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、图片存放位置"><span class="nav-number">2.</span> <span class="nav-text">二、图片存放位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、站点首页不显示文章全文"><span class="nav-number">3.</span> <span class="nav-text">三、站点首页不显示文章全文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、Markdown编写的latex公式无法显示"><span class="nav-number">4.</span> <span class="nav-text">四、Markdown编写的latex公式无法显示</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、贪婪算法"><span class="nav-number">2.</span> <span class="nav-text">一、贪婪算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思想"><span class="nav-number">2.1.</span> <span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">2.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、分治算法"><span class="nav-number">3.</span> <span class="nav-text">二、分治算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思想-1"><span class="nav-number">3.1.</span> <span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子-1"><span class="nav-number">3.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、动态规划"><span class="nav-number">4.</span> <span class="nav-text">三、动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思想-2"><span class="nav-number">4.1.</span> <span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子-2"><span class="nav-number">4.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、随机化算法"><span class="nav-number">5.</span> <span class="nav-text">四、随机化算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、回溯算法"><span class="nav-number">6.</span> <span class="nav-text">五、回溯算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思想-3"><span class="nav-number">6.1.</span> <span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子-3"><span class="nav-number">6.2.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></div>
             
 
           </div>
