@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Blog," />
+  <meta name="keywords" content="通信网络," />
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="前言一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。最近了解了一些博客框架，包括动态博客：大名鼎鼎的 wordpress，和静态博客：hexo、jekyll、gohugo、vuepress。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。这篇文章主要记录Hexo博客框架的搭建和部署到Git">
-<meta name="keywords" content="Blog">
+<meta name="description" content="前言TCP&#x2F;IP相关内容第二部分，包含：  TCP&#x2F;IP出现背景及标准化 互联网基础知识 TCP&#x2F;IP协议分层模型 TCP&#x2F;IP分层模型与通信示例">
+<meta name="keywords" content="通信网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客框架的搭建与部署">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;Blog&#x2F;index.html">
+<meta property="og:title" content="TCP&#x2F;IP.part2.TCP&#x2F;IP基础知识">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;TCP-IP-part2-TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="前言一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。最近了解了一些博客框架，包括动态博客：大名鼎鼎的 wordpress，和静态博客：hexo、jekyll、gohugo、vuepress。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。这篇文章主要记录Hexo博客框架的搭建和部署到Git">
+<meta property="og:description" content="前言TCP&#x2F;IP相关内容第二部分，包含：  TCP&#x2F;IP出现背景及标准化 互联网基础知识 TCP&#x2F;IP协议分层模型 TCP&#x2F;IP分层模型与通信示例">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-27T13:20:26.040Z">
+<meta property="og:updated_time" content="2019-11-09T11:25:57.921Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/27/Blog/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/09/TCP-IP-part2-TCP-IP基础知识/"/>
 
 
 
 
 
-  <title>Hexo博客框架的搭建与部署 | ChaosHill</title>
+  <title>TCP/IP.part2.TCP/IP基础知识 | ChaosHill</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/09/TCP-IP-part2-TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaos">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo博客框架的搭建与部署</h1>
+          <h1 class="post-title" itemprop="name headline">TCP/IP.part2.TCP/IP基础知识</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T19:44:04+08:00">
-                2019-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T16:31:06+08:00">
+                2019-11-09
               </time>
             
 
@@ -349,15 +349,49 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。<br>最近了解了一些博客框架，包括动态博客：大名鼎鼎的 <a href="https://www.wordpress.org" target="_blank" rel="noopener">wordpress</a>，和静态博客：<a href="https://www.hexo.io" target="_blank" rel="noopener">hexo</a>、<a href="https://www.jekyll.com" target="_blank" rel="noopener">jekyll</a>、<a href="https://www.gohugo.org" target="_blank" rel="noopener">gohugo</a>、<a href="vuepress.vuejs.org">vuepress</a>。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。<br>这篇文章主要记录Hexo博客框架的搭建和部署到Github上的流程。<br><a id="more"></a><br>需要安装git工具,其安装及配置参考：<a href="https://blog.csdn.net/huangqqdy/article/details/83032408" target="_blank" rel="noopener">https://blog.csdn.net/huangqqdy/article/details/83032408</a></p>
-<hr>
-<h1 id="一、Node-js下载与安装"><a href="#一、Node-js下载与安装" class="headerlink" title="一、Node.js下载与安装"></a>一、Node.js下载与安装</h1><p>在<a href="https//nodejs.org">Node.js</a>官网下载最新版本并安装。其中包含Node.js本身和npm包管理器，这两个是搭建博客框架不可少的。<br>在命令行终端 (windows用cmd就可以，本人用Git Bash) 用<code>node -v</code>和<code>npm -v</code>查看版本，确定是否安装成功。</p>
-<h1 id="二、Hexo下载与安装"><a href="#二、Hexo下载与安装" class="headerlink" title="二、Hexo下载与安装"></a>二、Hexo下载与安装</h1><p>由于国外服务器下载速度受限，考虑通过国内镜像源进行下载。<br>先用npm安装cnpm，镜像源为淘宝镜像。<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code><br>用<code>cnpm -v</code>验证安装是否成功。之后可以用cnpm安装hexo：<br><code>cnpm install -g hexo-cli</code><br>用<code>hexo -v</code>验证。</p>
-<h1 id="三、-使用Hexo搭建博客"><a href="#三、-使用Hexo搭建博客" class="headerlink" title="三、 使用Hexo搭建博客"></a>三、 使用Hexo搭建博客</h1><p>先创建一个空文件夹并进入：<br><code>mkdir /f/blog</code><br><code>cd /f/blog</code><br>使用hexo初始化一个博客：<br><code>hexo init</code><br>这个过程需要一段时间，完成之后会自动为你生成一些文件，其具体内容可以参考<a href="https://hexo.io/" target="_blank" rel="noopener">官方文档</a>。启动博客：<br><code>hexo s</code><br>可以在浏览器localhost:4000预览自己生成的博客。<br>生成博客文章：<br><code>hexo new &#39;blogtitle&#39;</code><br>之后在source/_posts目录下会生成blogtitle.md文件。可以基于Markdown格式对此进行编辑。<br>清理文件夹：<br><code>hexo clean</code><br>可以删除上次生成的public文件夹。之后再生成博客并启动：<br><code>hexo g &amp;&amp; hexo s</code></p>
-<h1 id="四、部署到Github上公开使用"><a href="#四、部署到Github上公开使用" class="headerlink" title="四、部署到Github上公开使用"></a>四、部署到Github上公开使用</h1><p>先登录自己的Github并建立一个新的仓库，注意用户部署个人博客的Github<strong>仓库的命名</strong>必须符合：<strong>用户名.github.io</strong>，后续在浏览器输入这个地址就可以访问博客。<br>回到hexo文件夹中，安装一个git部署插件：<br><code>cnpm install --save hexo-deployer-git</code><br>之后需要修改博客配置文件：<br><code>vim _config.yml</code><br>在Deployment配置中修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 刚才建立的Github仓库的地址</span><br><span class="line">  branch: master</span><br><span class="line">  message:</span><br></pre></td></tr></table></figure><br>之后就可以部署到Github：<br><code>hexo g</code><br>会提示你输入Github的账号及密码。可以配置SSH省去这个步骤，详情参考： <a href="https://blog.csdn.net/huangqqdy/article/details/83032408" target="_blank" rel="noopener">git的安装及配置</a>。<br>hexo部署后就可以公开访问<a href="https://用户名.github.io/。" target="_blank" rel="noopener">https://用户名.github.io/。</a></p>
-<h1 id="五、更换主题"><a href="#五、更换主题" class="headerlink" title="五、更换主题"></a>五、更换主题</h1><p>先下载主题：已yillia为例<br><code>git clone https://githu.com/litten/hexo-theme-yilia.git themes/yilia</code><br>之后在博客配置文件的Theme选项修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: yilia</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>更换Next主题及相关配置。<br>部署到远端服务器的操作，以阿里云ECS为例，更改安全组监听端口配置，服务器环境配置(Nginx配置)。参考:<a href="https://blog.csdn.net/NoCortY/article/details/99631249" target="_blank" rel="noopener">https://blog.csdn.net/NoCortY/article/details/99631249</a> 。注意服务器的博客实际存放目录(如：/home/www/website)的所有者一定是从本地机登录的git用户，鉴于在一开始没有足够权限，可以先用root用户创建，再在后期修改。参考：<a href="https://blog.csdn.net/m0_37286282/article/details/89496946" target="_blank" rel="noopener">https://blog.csdn.net/m0_37286282/article/details/89496946</a> 的Connection denied<br>修改后用<code>nginx -s reload</code>进行重载。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TCP/IP相关内容第二部分，包含：</p>
+<ul>
+<li>TCP/IP出现背景及标准化</li>
+<li>互联网基础知识</li>
+<li>TCP/IP协议分层模型</li>
+<li>TCP/IP分层模型与通信示例</li>
+</ul>
+<a id="more"></a>
+<h1 id="一、TCP-IP出现背景及标准化"><a href="#一、TCP-IP出现背景及标准化" class="headerlink" title="一、TCP/IP出现背景及标准化"></a>一、TCP/IP出现背景及标准化</h1><h2 id="1、出现背景及历史"><a href="#1、出现背景及历史" class="headerlink" title="1、出现背景及历史"></a>1、出现背景及历史</h2><p>TCP/IP的出现从军用技术的分组交换网络开始，到ARPANET，到TCP/IP的诞生，到UNIX系统的普及（其内嵌了TCP/IP协议的实现，带动TCP/IP发展），再到以ISP（网络服务供应商）为主的商用互联网服务，经历了大约60年的发展。</p>
+<h2 id="2、TCP-IP的标准化"><a href="#2、TCP-IP的标准化" class="headerlink" title="2、TCP/IP的标准化"></a>2、TCP/IP的标准化</h2><p>首先要明确的是，TCP/IP不是TCP与IP这两个协议，而是一个利用IP进行通信时所必需的用到的协议群，包括：</p>
+<ul>
+<li>网际协议：IP、ARP或ICMP</li>
+<li>传输协议：TCP或UDP</li>
+<li>应用协议：TELNET、FTP、SMTP、SNMP以及HTTP等</li>
+<li>路由控制协议： RIP、OSPF、BGP<br>一般是OSI模型三层及以上对应地协议，数据链路层和物理层的功能在TCP/IP中往往认为是透明的。</li>
+</ul>
+<p>TCP/IP是由IETF组织制定，其特点是“先实现并广泛使用，再制定规范”，因此具有很高的实用性。协议标准记录在RFC文档中并在互联网中发布。采用STD方式管理编号。</p>
+<h1 id="二、互联网基础知识"><a href="#二、互联网基础知识" class="headerlink" title="二、互联网基础知识"></a>二、互联网基础知识</h1><p>互联网是一个专有名词，其就是指采用TCP/IP协议建立起来的“网际网”。<br>互联网中的每个网络都由“骨干网”和“末端网”组成。每个网络之间通过NOC（网络操作中心）相连。<br>连接互联网的服务是由ISP或区域网提供的。用户需要向他们提出申请。</p>
+<h1 id="三、TCP-IP协议分层模型"><a href="#三、TCP-IP协议分层模型" class="headerlink" title="三、TCP/IP协议分层模型"></a>三、TCP/IP协议分层模型</h1><p>TCP/IP分层与OSI参考模型不太相同，其只包含五层。</p>
+<h2 id="1、硬件（物理层）"><a href="#1、硬件（物理层）" class="headerlink" title="1、硬件（物理层）"></a>1、硬件（物理层）</h2><p>最底层负责传输数据的硬件，相当于以太网或电话线路、光纤等物理层设备。其没有一个既定的指标，TCP/IP是在网络互联的设备能够通信的前提下有意义。</p>
+<h2 id="2、网络接口层（数据链路层）"><a href="#2、网络接口层（数据链路层）" class="headerlink" title="2、网络接口层（数据链路层）"></a>2、网络接口层（数据链路层）</h2><p>把数据链路当成网络层的接口看待。其相当于让NIC（网卡）起作用的“驱动程序”，驱动程序是在操作系统与硬件之间起桥梁作用的软件。数据链路层负责把长得一样的IP包根据不同的数据链路（如以太网、FDDI等）封装成不同的适合传输的数据帧，告诉物理层该怎么传输，其实就是把上层的指令告诉硬件设备该怎么操作，像一个驱动程序。</p>
+<h2 id="3、互联网层（网络层）"><a href="#3、互联网层（网络层）" class="headerlink" title="3、互联网层（网络层）"></a>3、互联网层（网络层）</h2><p>互联网层与传输层通常由<strong>操作系统</strong>提供，而应用层就由各个软件提供。像网桥、集线器、中继器这些底层设备就没必要实现TCP或IP的功能。<br>网络层常用的协议包括：</p>
+<ol>
+<li>IP，使用IP地址作为主机标识，是分组交换的一种协议，面向无连接，非可靠。</li>
+<li>ICMP，用来诊断网络的健康状况。</li>
+<li>ARP，从分组数据包中的IP地址解析出MAC地址的一种协议。</li>
+</ol>
+<h2 id="4、传输层"><a href="#4、传输层" class="headerlink" title="4、传输层"></a>4、传输层</h2><p>保证应用程序之间实现可靠通信，采用端口号识别应用程序。<br>常用协议包括：</p>
+<ol>
+<li>TCP，面向有连接的传输协议，在发送数据包之前要确认连接，有时需要至少7次发包和收包才能确定是连接上的。</li>
+<li>UDP，面向无连接的，不管对端是否收到或是否存在，不用在发数据包之前建立连接，想发就发。</li>
+</ol>
+<h2 id="5、应用层（会话层-表示层-应用层）"><a href="#5、应用层（会话层-表示层-应用层）" class="headerlink" title="5、应用层（会话层+表示层+应用层）"></a>5、应用层（会话层+表示层+应用层）</h2><p>TCP/IP应用架构都属于客户端/服务端模型，客户发送请求，服务端响应请求。其通常是通过计算机的客户端软件来实现的。<br>举例一些功能的分类，每个功能会有一个协议或多个来实现：</p>
+<ol>
+<li>WWW(万维网)<br>是一种互联网上数据读取的规范，远端服务器根据你的输入响应返回各种信息，呈现到浏览器页面上。很多浏览器软件采用的通信协议是HTTP（应用层），传输数据格式为HTML（表示层）。</li>
+<li>电子邮件<br>采用SMTP协议（应用层），MIME协议（表示层）。</li>
+<li>文件传输<br>采用FTP协议（应用层），传输过程中可以选择用二进制方式或是文本方式。不同的操作系统文本方式还不一样，如MacOS、Windows、Unix的换行符都不一样，但是通过表示层会自动修改为同一的，这样不同的OS之间也可以正确传输了。</li>
+<li>远程登录<br>常用SSH或TELNET两种协议（应用层）。</li>
+<li>网络管理<br>可以对联网的硬件设备进行远程修改配置，检查运行。采用SNMP协议（应用层），网络管理终端叫做“管理器”，被管理的主机、网桥、路由器等设备叫做“代理”。</li>
+</ol>
+<h1 id="四、TCP-IP分层模型与通信示例"><a href="#四、TCP-IP分层模型与通信示例" class="headerlink" title="四、TCP/IP分层模型与通信示例"></a>四、TCP/IP分层模型与通信示例</h1><p>每一层都有“包”这个概念，数据链路层叫“帧”，“数据报”是IP、UDP中的，“段”是TCP中的，“消息”是应用层中的。<br>一个包有两部分：协议用到的首部和上层传过来的数据。数据包的首部代表了协议的规范。<br>应用层的数据传到TCP层，会在数据前段加上TCP首部，包含源、目的端口号，序号（包在整个数据中的位置），和校验和。<br>TCP层的数据传到IP层，会加上IP首部，包含IP地址，和用来判断其后面数据是TCP还是UDP的信息。<br>继续往下传到网络接口中，以太网首部将包含MAC地址，以及标致以太网类型的以太数据的协议。在包的最后添加FCS，用于判断数据是否被噪声破坏。</p>
+<p><strong>每个包首部中至少都会包含两个信息：一个是发送端和接收端地址，另一个是上一层的协议类型。</strong> 提供上一层协议类型信息可以告诉本层在收到<strong>发送给自己</strong>的数据后，去掉包头之后剩下的数据该交由哪个程序去处理，如网络层是给IP处理程序还是ARP还是ICMP。传输层是根据端口号判断下一层是用哪个程序。如果收到的是一个无法识别的协议类型，则会丢弃数据。</p>
+<p>某一台计算机的某一层在接收到数据后，会先判断是不是发送给自己的，若不是，抛弃数据，若是，才会去解析数据包，去掉头部发给上一层正确的处理程序，继续重复前面的判断。例如路由的过程，路由器收到数据包后，发现目的MAC地址是指向自己的，与是去掉链路层的包头发到上层网络层，但网络层发现目的IP不是自己，证明要转发（只有IP地址也指向自己，才会继续往上给传输层），经查表后找到下一跳路由器的MAC地址，再根据下面要传输的数据链路封装好新的帧（根据下一个数据链路的格式），更换新的MAC地址，再通过下一个链路转发。</p>
 
       
     </div>
@@ -399,7 +433,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Blog/" rel="tag"># Blog</a>
+            <a href="/tags/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C/" rel="tag"># 通信网络</a>
           
         </div>
       
@@ -412,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/26/Markdown/" rel="next" title="常用Markdown语法">
-                <i class="fa fa-chevron-left"></i> 常用Markdown语法
+              <a href="/2019/11/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98%E4%B9%8BKMP%E7%AE%97%E6%B3%95/" rel="next" title="字符串匹配问题之KMP算法">
+                <i class="fa fa-chevron-left"></i> 字符串匹配问题之KMP算法
               </a>
             
           </div>
@@ -422,8 +456,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/27/Theme-Next/" rel="prev" title="Hexo博客框架的Next主题配置">
-                Hexo博客框架的Next主题配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/09/TCP-IP-part3-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="TCP/IP.part3.数据链路（一）">
+                TCP/IP.part3.数据链路（一） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -624,7 +658,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、Node-js下载与安装"><span class="nav-number">2.</span> <span class="nav-text">一、Node.js下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Hexo下载与安装"><span class="nav-number">3.</span> <span class="nav-text">二、Hexo下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-使用Hexo搭建博客"><span class="nav-number">4.</span> <span class="nav-text">三、 使用Hexo搭建博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、部署到Github上公开使用"><span class="nav-number">5.</span> <span class="nav-text">四、部署到Github上公开使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、更换主题"><span class="nav-number">6.</span> <span class="nav-text">五、更换主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后续"><span class="nav-number">7.</span> <span class="nav-text">后续</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、TCP-IP出现背景及标准化"><span class="nav-number">2.</span> <span class="nav-text">一、TCP/IP出现背景及标准化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、出现背景及历史"><span class="nav-number">2.1.</span> <span class="nav-text">1、出现背景及历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、TCP-IP的标准化"><span class="nav-number">2.2.</span> <span class="nav-text">2、TCP/IP的标准化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、互联网基础知识"><span class="nav-number">3.</span> <span class="nav-text">二、互联网基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、TCP-IP协议分层模型"><span class="nav-number">4.</span> <span class="nav-text">三、TCP/IP协议分层模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、硬件（物理层）"><span class="nav-number">4.1.</span> <span class="nav-text">1、硬件（物理层）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、网络接口层（数据链路层）"><span class="nav-number">4.2.</span> <span class="nav-text">2、网络接口层（数据链路层）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、互联网层（网络层）"><span class="nav-number">4.3.</span> <span class="nav-text">3、互联网层（网络层）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、传输层"><span class="nav-number">4.4.</span> <span class="nav-text">4、传输层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、应用层（会话层-表示层-应用层）"><span class="nav-number">4.5.</span> <span class="nav-text">5、应用层（会话层+表示层+应用层）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、TCP-IP分层模型与通信示例"><span class="nav-number">5.</span> <span class="nav-text">四、TCP/IP分层模型与通信示例</span></a></li></ol></div>
             
 
           </div>

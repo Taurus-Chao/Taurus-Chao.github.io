@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="通信网络," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言TCP&#x2F;IP协议栈是通信网络中的重要组成部分。最近在阅读《图解TCP&#x2F;IP》这本书，其对TCP&#x2F;IP的讲解比较通俗易懂，且涵盖了大部分重要的概念。本文主要是对其中的内容进行总结并附加自己的看法。  第一部分包含：  计算机网络的发展 协议的概念及意义 协议分层与OSI参考模型 传输方式的分类 网络的构成要素 现代网络实态">
+<meta name="keywords" content="通信网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP&#x2F;IP.part1.网络基础知识">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;03&#x2F;TCP-IP-part-1&#x2F;index.html">
+<meta property="og:site_name" content="ChaosHill">
+<meta property="og:description" content="前言TCP&#x2F;IP协议栈是通信网络中的重要组成部分。最近在阅读《图解TCP&#x2F;IP》这本书，其对TCP&#x2F;IP的讲解比较通俗易懂，且涵盖了大部分重要的概念。本文主要是对其中的内容进行总结并附加自己的看法。  第一部分包含：  计算机网络的发展 协议的概念及意义 协议分层与OSI参考模型 传输方式的分类 网络的构成要素 现代网络实态">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-09T08:27:03.443Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/03/TCP-IP-part-1/"/>
+
+
+
+
+
+  <title>TCP/IP.part1.网络基础知识 | ChaosHill</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ChaosHill</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Treasure-house</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/TCP-IP-part-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaos">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/portrait.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChaosHill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TCP/IP.part1.网络基础知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-03T17:18:22+08:00">
+                2019-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TCP/IP协议栈是通信网络中的重要组成部分。最近在阅读《图解TCP/IP》这本书，其对TCP/IP的讲解比较通俗易懂，且涵盖了大部分重要的概念。本文主要是对其中的内容进行总结并附加自己的看法。</p>
+<hr>
+<p>第一部分包含：</p>
+<ul>
+<li>计算机网络的发展</li>
+<li>协议的概念及意义</li>
+<li>协议分层与OSI参考模型</li>
+<li>传输方式的分类</li>
+<li>网络的构成要素</li>
+<li>现代网络实态<a id="more"></a>
+</li>
+</ul>
+<h1 id="一、计算机网络的发展"><a href="#一、计算机网络的发展" class="headerlink" title="一、计算机网络的发展"></a>一、计算机网络的发展</h1><p>计算机网络的发展经历了以下几个阶段：</p>
+<ol>
+<li>批处理<br>将程序装入卡带，将卡带装入读卡器并由读卡器读入输入程序给计算机，计算机处理后打印结果。</li>
+<li>分时系统<br>多个终端（一些输入输出装备）与同一个计算机连接，采用CPU时间片轮转机制实现多个程序同时运行。促进了<strong>BASIC</strong>语言的发展。</li>
+<li>计算机之间的通信<br>不在使用外部存储介质转移数据。</li>
+<li>计算机网络的产生<br>各式各样的计算机相互连接。</li>
+<li>互联网的普及<br>连接异构性计算机的通信网络。使得拥有不同硬件、软件（包括操作系统）的计算机能够实现通信。后续更是追求从“单纯建立连接”到“安全建立连接”。</li>
+</ol>
+<h1 id="二、协议的概念及意义"><a href="#二、协议的概念及意义" class="headerlink" title="二、协议的概念及意义"></a>二、协议的概念及意义</h1><p>协议就是计算机与计算机之间通过网络实现通信时实现达成的一种“约定”。这种“约定”使那些不同厂商的设备、不同的CPU及操作系统组成的计算机之间能够实现通信。每一种协议都明确界定了它的行为规范。<br>我们可以把协议看做人们平常说话所用的语言。语言不通无法沟通，协议一致通信自如。</p>
+<h2 id="1、分组交换协议"><a href="#1、分组交换协议" class="headerlink" title="1、分组交换协议"></a>1、分组交换协议</h2><p>将大数据分割为一个个叫做包的较小单位进行传输。每个包的报文首部是体现协议“约定”的部分，分组的发送方和接收方有必要对报文首部和内容保持一致的定义和解释。</p>
+<h2 id="2、协议的标准化"><a href="#2、协议的标准化" class="headerlink" title="2、协议的标准化"></a>2、协议的标准化</h2><p>不同厂商可能会使用不同的协议，并不有利于异构计算机之间的通信。协议标准化可以带来更多的灵活性。ISO制定了一套国际标准OSI。</p>
+<h1 id="三、协议分层与OSI参考模型"><a href="#三、协议分层与OSI参考模型" class="headerlink" title="三、协议分层与OSI参考模型"></a>三、协议分层与OSI参考模型</h1><p>OSI将协议分层。每一层为上层提供服务，并接受下一层提供的服务。上下层之间进行交互时遵守的约定叫做“接口”，同一层之间的交互所遵守的约定叫做“协议”。分层可以将每个分层独立使用，即使某分层发生变化，不会波及整个系统。通信两端需要保持同一层的协议一致，且提供的接口要满足上层的需求。</p>
+<h2 id="1、通过对话理解分层"><a href="#1、通过对话理解分层" class="headerlink" title="1、通过对话理解分层"></a>1、通过对话理解分层</h2><p>A与B通过电话通话，表面是A与B用汉语对话，语言层采用了汉语这个协议。但A与B的通话是由通信设备层保证的，其为上层提供了“让对方清楚听到自己说话的内容”这个服务，至于说话的内容对方是否听懂其并不关注。同时这一层协议可以用无线电，也可以用电话，但两端一定要保持一致。</p>
+<h2 id="2、OSI参考模型"><a href="#2、OSI参考模型" class="headerlink" title="2、OSI参考模型"></a>2、OSI参考模型</h2><p>这个模型并不是具体的协议（OSI协议与OSI参考模型）。其包含七层，发送方由上之下分层传输数据，接收端从下至上分层传输数据。<br>以电子邮件为例：</p>
+<ol>
+<li>应用层<br>将邮件内容，发件人，目标地址告诉对方。</li>
+<li>表示层<br>邮件客户端不同，我们编辑的文字格式可能不同，对方可能识别不出来。表示层的作用在于将特有的数据格式转化为统一的网络数据格式。为上层提供服务。</li>
+<li>会话层<br>决定采用何种连接方式（连接时机）。建一次连接传输所有邮件还是建一次只传一封邮件？</li>
+<li>传输层<br>在两个主机之间创建逻辑上的通信连接。如果数据没有到达，会负责进行重发。其为上层提供的服务是保证比特流能全送到。类比说活，这一层是保证听清楚每句话，至于每句话内容的处理，交给上层。</li>
+<li>网络层<br>为上层提供的服务：面对众多数据链路，保证一条合适的网络路径。类比说话，网络层保证找到你要对话的人，给出一个问路的顺序。后面如何对话，交给上层。这一层关注的是IP地址。</li>
+<li>数据链路层<br>保证在通过（同一个）传输介质互联（直连）的设备之间进行可靠通信。关注MAC地址。<br>网络层关心传输的最起点和最终点，数据链路层关心两个直连设备的通信。类比说话，网络层保证找到你要对话的人，数据链路层保证每两个人是可以对话的，才能一路问到最后的人。</li>
+<li>物理层<br>保证物理传输能够完成。（采样、0、1的转化，用电压、光传输等等）。</li>
+</ol>
+<h1 id="四、传输方式的分类"><a href="#四、传输方式的分类" class="headerlink" title="四、传输方式的分类"></a>四、传输方式的分类</h1><h2 id="1、面向有连接的和面向无连接的"><a href="#1、面向有连接的和面向无连接的" class="headerlink" title="1、面向有连接的和面向无连接的"></a>1、面向有连接的和面向无连接的</h2><ol>
+<li>面向有连接的<br>类似打电话，发送数据前需要在收发主机之间连接一条通信线路。连接不建立，数据不发送。</li>
+<li>面向无连接的<br>类似寄包裹，发微信，发邮件，不需确认对端，即使对端不存在或无法接受数据，也可以发数据，想发就发。</li>
+</ol>
+<p>有/无连接只针对某一层，网络层用IP协议，就必然是无连接的，但在传输层用TCP协议，就是有连接的。每层之间都可能不一样。</p>
+<h2 id="2、电路交换与分组交换"><a href="#2、电路交换与分组交换" class="headerlink" title="2、电路交换与分组交换"></a>2、电路交换与分组交换</h2><p>电路交换类似电话网。只要连接建立，即使链路空闲，只要连接不断，其他用户依然无法使用链路，利用率低。分组交换是所有用户共享链路，只要链路空闲，想发就发。分组数据被路由器缓存下来，以先进先出的顺序逐一发送出去。提高利用率。</p>
+<h2 id="3、根据接收端数量分类"><a href="#3、根据接收端数量分类" class="headerlink" title="3、根据接收端数量分类"></a>3、根据接收端数量分类</h2><ul>
+<li>单播</li>
+<li>广播</li>
+<li>多播</li>
+<li>任播</li>
+</ul>
+<h1 id="五、网络的构成要素"><a href="#五、网络的构成要素" class="headerlink" title="五、网络的构成要素"></a>五、网络的构成要素</h1><h2 id="1、通信媒介"><a href="#1、通信媒介" class="headerlink" title="1、通信媒介"></a>1、通信媒介</h2><p>每个数据链路名可以包含不同的通信媒介。带宽决定传输速率（车道数），吞吐量衡量带宽、网络拥堵等等的标准。</p>
+<h2 id="2、网卡（NIC）"><a href="#2、网卡（NIC）" class="headerlink" title="2、网卡（NIC）"></a>2、网卡（NIC）</h2><p>也叫网络适配器，有内置，有外置。</p>
+<h2 id="3、中继器"><a href="#3、中继器" class="headerlink" title="3、中继器"></a>3、中继器</h2><p>把衰减的信号还原，从物理层面上延长网络。<br>集线器可以看做是多口中继器</p>
+<h2 id="4、网桥-二层交换机"><a href="#4、网桥-二层交换机" class="headerlink" title="4、网桥/二层交换机"></a>4、网桥/二层交换机</h2><p>根据数据帧的内容转发数据给<strong>相邻</strong>的其他网络，构成一个更大的局域网。只用于连接相同或相似的链路。其只是在同一局域网把网络延长，让他们觉得他们是互联的，这是数据链路层要处理的问题，因此是第二层面上对网络的延长。关注MAC地址。<br>交换集线器。</p>
+<h2 id="5、路由器-三层交换机"><a href="#5、路由器-三层交换机" class="headerlink" title="5、路由器/三层交换机"></a>5、路由器/三层交换机</h2><p>连接网络与网络的设备。不同局域网的连接，可以隔离广播。路由器比三层交换机的优势在于其可以连接任意两个数据链路。如WAN和LAN。</p>
+<h2 id="6、4-7层交换机"><a href="#6、4-7层交换机" class="headerlink" title="6、4~7层交换机"></a>6、4~7层交换机</h2><p>负载均衡器</p>
+<h2 id="7、网关"><a href="#7、网关" class="headerlink" title="7、网关"></a>7、网关</h2><p>进行协议的转换。在两个不能直接通信的协议之间进行翻译，最终实现两者之间的通信。</p>
+<h1 id="六、现代网络实态"><a href="#六、现代网络实态" class="headerlink" title="六、现代网络实态"></a>六、现代网络实态</h1><p>把网络比作高速公路：<br>个人机传输数据到边缘网络，类似高速公路的入口，其由多功能路由器和3层交换机组成。交换机接收到数据后根据不同业务分配到主干网。即进入高速公路路传输。最后汇集到控制中心的服务器。<br>一些信息发布者，类似bilibili或者阿里云，我们把自己想要展示的数据传给他们的数据中心，数据中心往往与主干网直接连接，大大减少了交换过程。传输更快速。<br>“云”技术，即利用虚拟化技术（将硬件虚拟化，并用软件控制），根据使用者的情况动态调整必要资源（如CPU、硬盘、内存）的机制。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持是我创造源源不断地动力</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Chaos 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C/" rel="tag"># 通信网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/28/%E5%AF%BB%E6%89%BE%E5%B9%B3%E9%9D%A2%E7%82%B9%E9%9B%86%E4%B8%AD%E4%B8%A4%E7%82%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%9D%E7%A6%BB/" rel="next" title="寻找平面点集中两点的最短距离">
+                <i class="fa fa-chevron-left"></i> 寻找平面点集中两点的最短距离
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98%E4%B9%8BKMP%E7%AE%97%E6%B3%95/" rel="prev" title="字符串匹配问题之KMP算法">
+                字符串匹配问题之KMP算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/portrait.png"
+                alt="Chaos" />
+            
+              <p class="site-author-name" itemprop="name">Chaos</p>
+              <p class="site-description motion-element" itemprop="description">抬头做人，低头做事</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Taurus-Chao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shichao@nuaa.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5585690403" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://user.qzone.qq.com/458650521" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-qq"></i>QQ</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://iconfont.cn/" title="在线Icon库" target="_blank">在线Icon库</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://soogif.com/compress" title="Gif图片压缩工具" target="_blank">Gif图片压缩工具</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、计算机网络的发展"><span class="nav-number">2.</span> <span class="nav-text">一、计算机网络的发展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、协议的概念及意义"><span class="nav-number">3.</span> <span class="nav-text">二、协议的概念及意义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、分组交换协议"><span class="nav-number">3.1.</span> <span class="nav-text">1、分组交换协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、协议的标准化"><span class="nav-number">3.2.</span> <span class="nav-text">2、协议的标准化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、协议分层与OSI参考模型"><span class="nav-number">4.</span> <span class="nav-text">三、协议分层与OSI参考模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、通过对话理解分层"><span class="nav-number">4.1.</span> <span class="nav-text">1、通过对话理解分层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、OSI参考模型"><span class="nav-number">4.2.</span> <span class="nav-text">2、OSI参考模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、传输方式的分类"><span class="nav-number">5.</span> <span class="nav-text">四、传输方式的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、面向有连接的和面向无连接的"><span class="nav-number">5.1.</span> <span class="nav-text">1、面向有连接的和面向无连接的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、电路交换与分组交换"><span class="nav-number">5.2.</span> <span class="nav-text">2、电路交换与分组交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、根据接收端数量分类"><span class="nav-number">5.3.</span> <span class="nav-text">3、根据接收端数量分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、网络的构成要素"><span class="nav-number">6.</span> <span class="nav-text">五、网络的构成要素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、通信媒介"><span class="nav-number">6.1.</span> <span class="nav-text">1、通信媒介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、网卡（NIC）"><span class="nav-number">6.2.</span> <span class="nav-text">2、网卡（NIC）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、中继器"><span class="nav-number">6.3.</span> <span class="nav-text">3、中继器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、网桥-二层交换机"><span class="nav-number">6.4.</span> <span class="nav-text">4、网桥/二层交换机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、路由器-三层交换机"><span class="nav-number">6.5.</span> <span class="nav-text">5、路由器/三层交换机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、4-7层交换机"><span class="nav-number">6.6.</span> <span class="nav-text">6、4~7层交换机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、网关"><span class="nav-number">6.7.</span> <span class="nav-text">7、网关</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、现代网络实态"><span class="nav-number">7.</span> <span class="nav-text">六、现代网络实态</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaos</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+-->
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

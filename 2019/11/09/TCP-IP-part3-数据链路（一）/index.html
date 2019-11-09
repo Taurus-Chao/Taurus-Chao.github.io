@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Blog," />
+  <meta name="keywords" content="通信网络," />
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="前言一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。最近了解了一些博客框架，包括动态博客：大名鼎鼎的 wordpress，和静态博客：hexo、jekyll、gohugo、vuepress。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。这篇文章主要记录Hexo博客框架的搭建和部署到Git">
-<meta name="keywords" content="Blog">
+<meta name="description" content="前言TCP&#x2F;IP相关内容第三部分，包含：  数据链路的作用 数据链路相关技术">
+<meta name="keywords" content="通信网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客框架的搭建与部署">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;Blog&#x2F;index.html">
+<meta property="og:title" content="TCP&#x2F;IP.part3.数据链路（一）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;TCP-IP-part3-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%EF%BC%88%E4%B8%80%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="前言一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。最近了解了一些博客框架，包括动态博客：大名鼎鼎的 wordpress，和静态博客：hexo、jekyll、gohugo、vuepress。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。这篇文章主要记录Hexo博客框架的搭建和部署到Git">
+<meta property="og:description" content="前言TCP&#x2F;IP相关内容第三部分，包含：  数据链路的作用 数据链路相关技术">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-27T13:20:26.040Z">
+<meta property="og:updated_time" content="2019-11-09T12:48:29.239Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/27/Blog/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/09/TCP-IP-part3-数据链路（一）/"/>
 
 
 
 
 
-  <title>Hexo博客框架的搭建与部署 | ChaosHill</title>
+  <title>TCP/IP.part3.数据链路（一） | ChaosHill</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/09/TCP-IP-part3-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaos">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo博客框架的搭建与部署</h1>
+          <h1 class="post-title" itemprop="name headline">TCP/IP.part3.数据链路（一）</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T19:44:04+08:00">
-                2019-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T19:28:48+08:00">
+                2019-11-09
               </time>
             
 
@@ -349,15 +349,31 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。<br>最近了解了一些博客框架，包括动态博客：大名鼎鼎的 <a href="https://www.wordpress.org" target="_blank" rel="noopener">wordpress</a>，和静态博客：<a href="https://www.hexo.io" target="_blank" rel="noopener">hexo</a>、<a href="https://www.jekyll.com" target="_blank" rel="noopener">jekyll</a>、<a href="https://www.gohugo.org" target="_blank" rel="noopener">gohugo</a>、<a href="vuepress.vuejs.org">vuepress</a>。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。<br>这篇文章主要记录Hexo博客框架的搭建和部署到Github上的流程。<br><a id="more"></a><br>需要安装git工具,其安装及配置参考：<a href="https://blog.csdn.net/huangqqdy/article/details/83032408" target="_blank" rel="noopener">https://blog.csdn.net/huangqqdy/article/details/83032408</a></p>
-<hr>
-<h1 id="一、Node-js下载与安装"><a href="#一、Node-js下载与安装" class="headerlink" title="一、Node.js下载与安装"></a>一、Node.js下载与安装</h1><p>在<a href="https//nodejs.org">Node.js</a>官网下载最新版本并安装。其中包含Node.js本身和npm包管理器，这两个是搭建博客框架不可少的。<br>在命令行终端 (windows用cmd就可以，本人用Git Bash) 用<code>node -v</code>和<code>npm -v</code>查看版本，确定是否安装成功。</p>
-<h1 id="二、Hexo下载与安装"><a href="#二、Hexo下载与安装" class="headerlink" title="二、Hexo下载与安装"></a>二、Hexo下载与安装</h1><p>由于国外服务器下载速度受限，考虑通过国内镜像源进行下载。<br>先用npm安装cnpm，镜像源为淘宝镜像。<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code><br>用<code>cnpm -v</code>验证安装是否成功。之后可以用cnpm安装hexo：<br><code>cnpm install -g hexo-cli</code><br>用<code>hexo -v</code>验证。</p>
-<h1 id="三、-使用Hexo搭建博客"><a href="#三、-使用Hexo搭建博客" class="headerlink" title="三、 使用Hexo搭建博客"></a>三、 使用Hexo搭建博客</h1><p>先创建一个空文件夹并进入：<br><code>mkdir /f/blog</code><br><code>cd /f/blog</code><br>使用hexo初始化一个博客：<br><code>hexo init</code><br>这个过程需要一段时间，完成之后会自动为你生成一些文件，其具体内容可以参考<a href="https://hexo.io/" target="_blank" rel="noopener">官方文档</a>。启动博客：<br><code>hexo s</code><br>可以在浏览器localhost:4000预览自己生成的博客。<br>生成博客文章：<br><code>hexo new &#39;blogtitle&#39;</code><br>之后在source/_posts目录下会生成blogtitle.md文件。可以基于Markdown格式对此进行编辑。<br>清理文件夹：<br><code>hexo clean</code><br>可以删除上次生成的public文件夹。之后再生成博客并启动：<br><code>hexo g &amp;&amp; hexo s</code></p>
-<h1 id="四、部署到Github上公开使用"><a href="#四、部署到Github上公开使用" class="headerlink" title="四、部署到Github上公开使用"></a>四、部署到Github上公开使用</h1><p>先登录自己的Github并建立一个新的仓库，注意用户部署个人博客的Github<strong>仓库的命名</strong>必须符合：<strong>用户名.github.io</strong>，后续在浏览器输入这个地址就可以访问博客。<br>回到hexo文件夹中，安装一个git部署插件：<br><code>cnpm install --save hexo-deployer-git</code><br>之后需要修改博客配置文件：<br><code>vim _config.yml</code><br>在Deployment配置中修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 刚才建立的Github仓库的地址</span><br><span class="line">  branch: master</span><br><span class="line">  message:</span><br></pre></td></tr></table></figure><br>之后就可以部署到Github：<br><code>hexo g</code><br>会提示你输入Github的账号及密码。可以配置SSH省去这个步骤，详情参考： <a href="https://blog.csdn.net/huangqqdy/article/details/83032408" target="_blank" rel="noopener">git的安装及配置</a>。<br>hexo部署后就可以公开访问<a href="https://用户名.github.io/。" target="_blank" rel="noopener">https://用户名.github.io/。</a></p>
-<h1 id="五、更换主题"><a href="#五、更换主题" class="headerlink" title="五、更换主题"></a>五、更换主题</h1><p>先下载主题：已yillia为例<br><code>git clone https://githu.com/litten/hexo-theme-yilia.git themes/yilia</code><br>之后在博客配置文件的Theme选项修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: yilia</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>更换Next主题及相关配置。<br>部署到远端服务器的操作，以阿里云ECS为例，更改安全组监听端口配置，服务器环境配置(Nginx配置)。参考:<a href="https://blog.csdn.net/NoCortY/article/details/99631249" target="_blank" rel="noopener">https://blog.csdn.net/NoCortY/article/details/99631249</a> 。注意服务器的博客实际存放目录(如：/home/www/website)的所有者一定是从本地机登录的git用户，鉴于在一开始没有足够权限，可以先用root用户创建，再在后期修改。参考：<a href="https://blog.csdn.net/m0_37286282/article/details/89496946" target="_blank" rel="noopener">https://blog.csdn.net/m0_37286282/article/details/89496946</a> 的Connection denied<br>修改后用<code>nginx -s reload</code>进行重载。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TCP/IP相关内容第三部分，包含：</p>
+<ul>
+<li>数据链路的作用</li>
+<li>数据链路相关技术</li>
+</ul>
+<a id="more"></a>
+<h1 id="一、数据链路的作用"><a href="#一、数据链路的作用" class="headerlink" title="一、数据链路的作用"></a>一、数据链路的作用</h1><blockquote>
+<p>数据链路层的协议定义了通过通信媒介互连的设备之间传输的规范。</p>
+</blockquote>
+<p>数据链路保证了媒介互连的设备之间进行可靠的数据（帧）传输。“媒介互连”指的是主机都是在相同，或是相似的数据链路之中，他们可以是用物理媒介直接连在一起的，也可以是通过交换机，网桥，中继器连在一起的。他们在一个非异构的网络中被连接起来（异构的需要用路由器），都遵守着相同的数据链路传输规约。他们不一定是属于同一个局域网，因为有VLAN的存在。</p>
+<p>而物理层的作用是把二进制的“帧”数字信号与实际的物理模拟信号进行相互转换。</p>
+<p>一般数据链路采用的技术都会与物理层的特性相关，如有线就要用CSMA/CD,而无线就用CSMA/CA。如数据链路以太网与FDDI直接规定了物理层的规格。而ATM规范中还包含了网络层的一部分功能。</p>
+<p>互联网可以被称为“数据链路的集合”。</p>
+<h1 id="二、数据链路相关技术"><a href="#二、数据链路相关技术" class="headerlink" title="二、数据链路相关技术"></a>二、数据链路相关技术</h1><h2 id="1、MAC地址"><a href="#1、MAC地址" class="headerlink" title="1、MAC地址"></a>1、MAC地址</h2><p>MAC地址用于识别数据链路中互连的节点。地址长48bit，被烧入到NIC的ROM中，一般认为是全球唯一的。但事实上只要同一个数据链路中不重复就可以。如一台主机上启动多个虚拟机会分配多个虚拟网卡，难保证全球唯一了。</p>
+<p>MAC地址前两bit位是单播/多播和全局/本地地址，3~24bit是厂商唯一识别数字，25~48bit是厂商内部每个网卡识别数字。</p>
+<h2 id="2、共享介质型网络"><a href="#2、共享介质型网络" class="headerlink" title="2、共享介质型网络"></a>2、共享介质型网络</h2><p>设备之间同用一个载波信道，采用半双工通信（就一根线，接收的时候不能发送，发送的时候不能接受）。最早的以太网和FDDI就采用的这种。其网络属于分布式，没用中心，一人发，所有人的都能收到，根据MAC地址是否匹配来决定是接受还是抛弃。不用交换机这个东西。<br>包含两种模式：</p>
+<ol>
+<li>争用方式<br>CSMA：确认信道空闲后就发送，同时发送会造成冲突，但不会停止，直到帧发送完再被要求重发。此时会造成性能下降。<br>CSMA/CD：确认信道空闲后就发送，同时监听信道，若监听到同轴电缆的电压突然升高，证明还有别的节点也发了数据帧，认为发生冲突，此时放弃发送数据帧，在随机延时后重发，比CSMA节约时间。</li>
+<li>令牌传递方式<br>沿着令牌环发送一种叫“令牌”的特殊报文，只有获得令牌的站才能发送数据，这样不会有冲突，且每个站都有平等的机会收到令牌。数据包被发出后沿着环转一圈给所有主机，回到源地址后被抛弃。</li>
+</ol>
+<h2 id="3、非共享介质网络"><a href="#3、非共享介质网络" class="headerlink" title="3、非共享介质网络"></a>3、非共享介质网络</h2><p>网络中每个站直连交换机，由交换机根据MAC地址负责转发数据帧，全双工通信。计算机与交换机端口形成一对一连接。这是ATM和主流以太网的传输控制方式。<br>这种方式还可以用交换机构建虚拟局域网（VLAN），缺点是交换机一坏，所有计算机都无法通信。</p>
+<p>以太网既可以采用同轴电缆CSMA技术半双工通信（早期的）、也可以采用双绞线交换机技术全双工通信（现在流行的）。</p>
+<h2 id="4、根据MAC地址转发"><a href="#4、根据MAC地址转发" class="headerlink" title="4、根据MAC地址转发"></a>4、根据MAC地址转发</h2><p>以太网交换机就是持有多个端口的网桥。它根据记录的转发表，根据MAC地址转发数据。转发表可以使手工设置，也可以自动生成。每次收到帧，他都会记录源MAC地址和对应传进来的端口，下次有目的MAC地址为该MAC地址时直接往这个端口发。对于未知的MAC地址，会广播给所有端口。（后面借助路由器可以用ARP）</p>
+<h2 id="5、环路检测技术"><a href="#5、环路检测技术" class="headerlink" title="5、环路检测技术"></a>5、环路检测技术</h2><p>通过网桥连接的网络若出现了环，很可能造成数据帧持续转发无法被释放，造成网络瘫痪。可以采用：1、生成树方式； 2、源路由法； 来提高容灾能力。</p>
+<h2 id="6、VLAN（虚拟局域网）"><a href="#6、VLAN（虚拟局域网）" class="headerlink" title="6、VLAN（虚拟局域网）"></a>6、VLAN（虚拟局域网）</h2><p>如果想要改变网络的拓扑结构（例如让一些主机脱离这个链路网络），可能需要对硬件线路进行改造（把连接主机和这个交换机的网线给撤走），很麻烦。采用具有VLAN技术的网桥可以避免这么麻烦的事，其不需要修改网络布线，就可以切断所有VLAN之间的所有通信。其强行把交换机的端口切割，让连接在同一交换机的网段成为异构的，只能用路由器连接了。这样做可以区分广播范围，减少网络负载，提高网络安性。</p>
 
       
     </div>
@@ -399,7 +415,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Blog/" rel="tag"># Blog</a>
+            <a href="/tags/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C/" rel="tag"># 通信网络</a>
           
         </div>
       
@@ -412,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/26/Markdown/" rel="next" title="常用Markdown语法">
-                <i class="fa fa-chevron-left"></i> 常用Markdown语法
+              <a href="/2019/11/09/TCP-IP-part2-TCP-IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="next" title="TCP/IP.part2.TCP/IP基础知识">
+                <i class="fa fa-chevron-left"></i> TCP/IP.part2.TCP/IP基础知识
               </a>
             
           </div>
@@ -421,10 +437,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/27/Theme-Next/" rel="prev" title="Hexo博客框架的Next主题配置">
-                Hexo博客框架的Next主题配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -624,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、Node-js下载与安装"><span class="nav-number">2.</span> <span class="nav-text">一、Node.js下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Hexo下载与安装"><span class="nav-number">3.</span> <span class="nav-text">二、Hexo下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-使用Hexo搭建博客"><span class="nav-number">4.</span> <span class="nav-text">三、 使用Hexo搭建博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、部署到Github上公开使用"><span class="nav-number">5.</span> <span class="nav-text">四、部署到Github上公开使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、更换主题"><span class="nav-number">6.</span> <span class="nav-text">五、更换主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后续"><span class="nav-number">7.</span> <span class="nav-text">后续</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、数据链路的作用"><span class="nav-number">2.</span> <span class="nav-text">一、数据链路的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、数据链路相关技术"><span class="nav-number">3.</span> <span class="nav-text">二、数据链路相关技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、MAC地址"><span class="nav-number">3.1.</span> <span class="nav-text">1、MAC地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、共享介质型网络"><span class="nav-number">3.2.</span> <span class="nav-text">2、共享介质型网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、非共享介质网络"><span class="nav-number">3.3.</span> <span class="nav-text">3、非共享介质网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、根据MAC地址转发"><span class="nav-number">3.4.</span> <span class="nav-text">4、根据MAC地址转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、环路检测技术"><span class="nav-number">3.5.</span> <span class="nav-text">5、环路检测技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、VLAN（虚拟局域网）"><span class="nav-number">3.6.</span> <span class="nav-text">6、VLAN（虚拟局域网）</span></a></li></ol></li></ol></div>
             
 
           </div>
