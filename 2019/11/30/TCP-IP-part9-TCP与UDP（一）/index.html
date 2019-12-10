@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="通信网络," />
 
 
 
@@ -79,13 +79,15 @@
 
 
 
-<meta name="description" content="抬头做人，低头做事">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ChaosHill">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95&#x2F;index.html">
+<meta name="description" content="前言TCP&#x2F;IP相关内容第九部分，包含：  传输层的作用 端口号 UDP">
+<meta name="keywords" content="通信网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP-IP-part9-TCP与UDP（一）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;TCP-IP-part9-TCP%E4%B8%8EUDP%EF%BC%88%E4%B8%80%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="抬头做人，低头做事">
+<meta property="og:description" content="前言TCP&#x2F;IP相关内容第九部分，包含：  传输层的作用 端口号 UDP">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-08T09:39:18.853Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -116,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/数据结构与算法/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/30/TCP-IP-part9-TCP与UDP（一）/"/>
 
 
 
 
 
-  <title>标签: 数据结构与算法 | ChaosHill</title>
+  <title>TCP-IP-part9-TCP与UDP（一） | ChaosHill</title>
   
 
 
@@ -141,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,110 +237,259 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>数据结构与算法<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/30/TCP-IP-part9-TCP%E4%B8%8EUDP%EF%BC%88%E4%B8%80%EF%BC%89/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaos">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/portrait.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChaosHill">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/11/09/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98%E4%B9%8BKMP%E7%AE%97%E6%B3%95/" itemprop="url">
-              
-                <span itemprop="name">字符串匹配问题之KMP算法</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">TCP-IP-part9-TCP与UDP（一）</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-09T14:46:34+08:00"
-              content="2019-11-09" >
-          11-09
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-30T22:31:26+08:00">
+                2019-11-30
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/28/%E5%AF%BB%E6%89%BE%E5%B9%B3%E9%9D%A2%E7%82%B9%E9%9B%86%E4%B8%AD%E4%B8%A4%E7%82%B9%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%9D%E7%A6%BB/" itemprop="url">
-              
-                <span itemprop="name">寻找平面点集中两点的最短距离</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-10-28T22:29:02+08:00"
-              content="2019-10-28" >
-          10-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/28/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/" itemprop="url">
-              
-                <span itemprop="name">算法设计技巧总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-10-28T22:27:39+08:00"
-              content="2019-10-28" >
-          10-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TCP/IP相关内容第九部分，包含：</p>
+<ul>
+<li>传输层的作用</li>
+<li>端口号</li>
+<li>UDP</li>
+</ul>
+<a id="more"></a>
+<h1 id="一、传输层的作用"><a href="#一、传输层的作用" class="headerlink" title="一、传输层的作用"></a>一、传输层的作用</h1><p>传输层的作用在于把数据包送到正确的应用程序中，根据端口号识别具体的程序。应用程序的实质是处理应用层的协议。TCP/IP多数应用协议要求客户端、服务端存在。服务端程序监听端口，叫做<strong>守护进程</strong>。如httpd和sshd守护进程，本质上也就是服务器上的应用程序。不需要逐个将他们启动，只需要超级守护进程inetd代表他们接受请求，由它复刻、转换为各个进程。确认数据包发给哪个守护进程，用端口号可以轻松识别。</p>
+<h2 id="两种传输层协议TCP和UDP"><a href="#两种传输层协议TCP和UDP" class="headerlink" title="两种传输层协议TCP和UDP"></a>两种传输层协议TCP和UDP</h2><p>TCP是面向连接的，可靠的流协议。UDP是无连接的、不可靠传输协议。TCP是面向字节流发送的，字节按序进入缓存区，分段后进行传输，收方TCP重排后交付给应用层（IP层不需要负责分片）。要等前面的字节确认接受了才能发后面的字节。而UDP面向报文，应用程序分好包好UDP加个首部就直接一股脑丢给IP层发送，由IP层分片和重装，收方UDP收到的就是一整个长长的报文，也不用排序，不具备重发功能，直接交付给上层。</p>
+<p>可靠的数据传输用TCP，实时通信和多播广播用UDP。</p>
+<h1 id="二、端口号"><a href="#二、端口号" class="headerlink" title="二、端口号"></a>二、端口号</h1><p>端口号是识别同一台主机不同应用程序的地址，也被称为程序地址。</p>
+<p>一个通信要用五个要素确定，源IP地址、目的IP地址、协议号、源端口号、目的端口号。例如我在电脑上打开两个浏览器浏览同一个网页，此时只有源端口号不一样，其余都一样，但仍是两个通信。</p>
+<p>端口只是数据接收的一个窗口，理论上任何一个窗口可以由任意一个应用程序监听并把数据拿去解析，但在实际中往往有约定，尤其是服务器，应该采用约定的程序去监听约定的端口。</p>
+<p>服务器端静态分配：（针对每个服务要明确一个端口，否则客户端不知道往哪发）<br>知名端口号：0~1023<br>注册端口号：1024~49151<br>客户端动态分配：因为请求总是从客户端发起，因此服务器总是能知道对方的端口号，因此客户端的端口号可以交给操作系统决定，根据时序分配法，每需要一个新的端口就在之前分配的加1.<br>范围：49152~65535</p>
+<p>端口号一致，协议不一致也被认为是不同的通信。但只要端口号一致，上层提供的服务就是一致的，也就是一个端口只对应一种守护进程来监听，不管你是从哪种传输层过来的，不管可靠不可靠，去掉首部之后都是一样的，应用程序总是能够处理。</p>
+<blockquote>
+<blockquote>
+<p>知名端口号：<br>TCP：<br>20:ftp-data<br>21:ftp<br>22:ssh<br>23:telnet<br>25:SMTP<br>53:DNS<br>80:http<br>179:bgp<br>UDP<br>53:DNS<br>67:DHCP<br>68:DHCP<br>161:SNMP<br>520:RIP</p>
+</blockquote>
+</blockquote>
+<h1 id="三、UDP"><a href="#三、UDP" class="headerlink" title="三、UDP"></a>三、UDP</h1><p>利用IP提供面向无连接的通信服务。只要一收到应用程序发来的数据就立即打上UDP头部发送到网络上，不管分片，也不会重发。</p>
+<p>UDP应用：</p>
+<ul>
+<li>包总量较少的通信：DNS、SNMP</li>
+<li>即时通信：视频音频</li>
+<li>广播、多播通信：RIP、DHCP</li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持是我创造源源不断地动力</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Chaos 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C/" rel="tag"># 通信网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/30/TCP-IP-part8-IP%E5%8D%8F%E8%AE%AE%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="TCP-IP-part8-IP协议相关技术（二）">
+                <i class="fa fa-chevron-left"></i> TCP-IP-part8-IP协议相关技术（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/08/TCP-IP-part10-TCP%E4%B8%8EUDP%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="prev" title="TCP-IP-part10-TCP与UDP（二）">
+                TCP-IP-part10-TCP与UDP（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -346,6 +497,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -366,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -496,6 +660,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、传输层的作用"><span class="nav-number">2.</span> <span class="nav-text">一、传输层的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种传输层协议TCP和UDP"><span class="nav-number">2.1.</span> <span class="nav-text">两种传输层协议TCP和UDP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、端口号"><span class="nav-number">3.</span> <span class="nav-text">二、端口号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、UDP"><span class="nav-number">4.</span> <span class="nav-text">三、UDP</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -665,6 +845,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -722,26 +906,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

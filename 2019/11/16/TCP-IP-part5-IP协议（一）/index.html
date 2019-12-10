@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="机器学习," />
+  <meta name="keywords" content="通信网络," />
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="前言最近做项目需要深度学习的内容，于是阅读了《deep learning》这部经典书籍。参考其中有关机器学习的内容，在此整理优化算法中广泛应用的梯度下降法和牛顿法。">
-<meta name="keywords" content="机器学习">
+<meta name="description" content="前言TCP&#x2F;IP相关内容第四部分，包含：  IP即网际协议 IP基础知识 IP地址的基础知识">
+<meta name="keywords" content="通信网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="梯度下降法和牛顿法">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;Gradient-descent-and-Newton-algorithm&#x2F;index.html">
+<meta property="og:title" content="TCP-IP-part5-IP协议（一）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;TCP-IP-part5-IP%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="前言最近做项目需要深度学习的内容，于是阅读了《deep learning》这部经典书籍。参考其中有关机器学习的内容，在此整理优化算法中广泛应用的梯度下降法和牛顿法。">
+<meta property="og:description" content="前言TCP&#x2F;IP相关内容第四部分，包含：  IP即网际协议 IP基础知识 IP地址的基础知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;uploads&#x2F;梯度.png">
-<meta property="og:updated_time" content="2019-10-28T14:27:10.532Z">
+<meta property="og:updated_time" content="2019-11-17T14:49:50.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;uploads&#x2F;梯度.png">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/27/Gradient-descent-and-Newton-algorithm/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/16/TCP-IP-part5-IP协议（一）/"/>
 
 
 
 
 
-  <title>梯度下降法和牛顿法 | ChaosHill</title>
+  <title>TCP-IP-part5-IP协议（一） | ChaosHill</title>
   
 
 
@@ -253,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Gradient-descent-and-Newton-algorithm/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/TCP-IP-part5-IP%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaos">
@@ -270,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">梯度下降法和牛顿法</h1>
+          <h1 class="post-title" itemprop="name headline">TCP-IP-part5-IP协议（一）</h1>
         
 
         <div class="post-meta">
@@ -282,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T22:18:08+08:00">
-                2019-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-16T22:33:08+08:00">
+                2019-11-16
               </time>
             
 
@@ -351,33 +349,54 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近做项目需要深度学习的内容，于是阅读了<a href="http://www.deeplearningbook.org/" target="_blank" rel="noopener">《deep learning》</a>这部经典书籍。参考其中有关机器学习的内容，在此整理优化算法中广泛应用的梯度下降法和牛顿法。<br><a id="more"></a></p>
-<h1 id="一、梯度下降法"><a href="#一、梯度下降法" class="headerlink" title="一、梯度下降法"></a>一、梯度下降法</h1><blockquote>
-<p>优化指的是改变$ x $以最小化或最大化某个函数$f(x)$的任务。我们通常以最小化$f(x)$指代大多数最优化问题。</p>
-</blockquote>
-<p>针对具有多维输入的函数，梯度是相对一个向量求得的导数，记为：$\nabla_xf(x)$。在$\mu$（单位向量）方向的方向导数是函数在$\mu$方向的斜率。为了最小化$f$，我们希望找到使$f$下降得最快的方向。计算方向导数：</p>
-<script type="math/tex; mode=display">
-min\  \mu^T\nabla_xf(x)
-\\=min\ ||\mu||_2||\nabla_xf(x)||_2\cos\theta</script><p>这在$\mu$与梯度方向相反时取得最小。换句话说，梯度向量指向上坡,负梯度向量指向下坡。我们在负梯度方向上移动可以减小$f$.因此<strong>最速下降</strong>建议新的点为：</p>
-<script type="math/tex; mode=display">
-x'=x-\epsilon\nabla_xf(x)</script><p>其中$\epsilon$为学习率，是一个确定步长大小的正标量。其选择的方式有几种：</p>
-<ol>
-<li>选择一个小的常数，缺点是收敛速度太慢。</li>
-<li>线搜索，其优点在于能以较快的速度收敛于临界点。可以进一步分为：<ul>
-<li>精确线搜索：包括黄金分割法、抛物线法等等。</li>
-<li>非精确线搜索：Wolfe准则、Armijo准则等。</li>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TCP/IP相关内容第四部分，包含：</p>
+<ul>
+<li>IP即网际协议</li>
+<li>IP基础知识</li>
+<li>IP地址的基础知识</li>
 </ul>
+<a id="more"></a>
+<h1 id="一、IP即网际协议"><a href="#一、IP即网际协议" class="headerlink" title="一、IP即网际协议"></a>一、IP即网际协议</h1><blockquote>
+<p>网络层的作用是实现终端节点之间的通信。</p>
+</blockquote>
+<p>数据链路层的作用是在互连同一种数据链路的节点之间进行包传递，当跨越多种数据链路时就需要借助网络层。作为网络层的IP负责在没有直连的两个网络之间进行通信传输。</p>
+<p>主机应指“配备IP地址，但不进行路由控制的设备”，与路由器应区分。“节点”才是主机和路由器的统称。</p>
+<h1 id="二、IP基础知识"><a href="#二、IP基础知识" class="headerlink" title="二、IP基础知识"></a>二、IP基础知识</h1><p>IP的三大作用：IP寻址，路由，IP分包与组包。</p>
+<h2 id="1、IP地址属于网络层地址"><a href="#1、IP地址属于网络层地址" class="headerlink" title="1、IP地址属于网络层地址"></a>1、IP地址属于网络层地址</h2><p>MAC地址是用来标识同一链路中不同计算机的一种标识码。而IP地址是连接到网络中的所有主机的标识码。不论一台主机与那种数据链路连接，其IP地址的形式都不会改变。</p>
+<p>另外，在<strong>网桥或集线器</strong>等物理层、数据链路层转发设备中，<strong>不需要设置IP地址</strong>，因为他们不需要应对IP协议，只需要将IP包转化为0、1比特流进行数据帧转发即可。</p>
+<p>交换机没有IP地址，也没有MAC地址。路由器两者都有。</p>
+<h2 id="2、路由控制"><a href="#2、路由控制" class="headerlink" title="2、路由控制"></a>2、路由控制</h2><p>路由控制指将分组数据发送到最终目标地址的功能。IP路由也叫多跳路由。一跳是一个区间，是指只通过下层链路到达相邻的路由器或主机。路由器或主机在转发IP数据包时只指定下一个路由器或主机。路由器收到IP包（从目的MAC为本路由器的数据帧解析来的），找到下一跳路由器的MAC（可以根据IP进行ARP）地址，把数据包重新封装成适合下一链路传输的，目的MAC地址为下一跳路由器MAC地址的数据帧，再发送出去。</p>
+<p>所有路由器都维护这一张路由控制表。</p>
+<h2 id="3、数据链路的抽象化"><a href="#3、数据链路的抽象化" class="headerlink" title="3、数据链路的抽象化"></a>3、数据链路的抽象化</h2><p>不同数据链路最大的区别，是最大传输单元（MTU）不同。路由器能连接异构的数据链路，因为他有能力根据MTU将IP包进行分片和组装，并把IP包封装成不同类型的帧。拆好了给下层，装好了给上层。因此从IP以上的层来看，根本不知道数据链路有MTU这回事儿，只管发或者收，IP为上层抽象了数据链路层。</p>
+<h2 id="4、IP属于面向无连接的"><a href="#4、IP属于面向无连接的" class="headerlink" title="4、IP属于面向无连接的"></a>4、IP属于面向无连接的</h2><p>IP包发送之前不需要建立与对端的连接，一有IP包就发，不会几次握手确认与对面建立连接。因为有连接太慢了，IP只需要保证“把IP包送到目的地”，而不用管对方是否收到。这种事交给上层TCP做就可以。TCP会让IP发几个建立连接的包给对方（IP拿到就发），若收到回复，证明连接建立成功，TCP才发长长的数据包。这种分层分工的实施很有效，也很方便。</p>
+<h1 id="三、IP地址的基础知识"><a href="#三、IP地址的基础知识" class="headerlink" title="三、IP地址的基础知识"></a>三、IP地址的基础知识</h1><p>IP地址由32bit表示，8位一组，用“.”分为4组，再将每组用十进制表示。如：172.20.1.1。IP地址最多允许43亿台电脑接入，每一块儿网卡只配置一个IP地址，一台路由器通常会有多个IP地址。</p>
+<p>IP地址由“网络标识”和“主机标识”构成。网络标识必须保证相互连接的每个段的地址不不相重复，相同段内的主机必须有相同的网络地址。同一网段内不能出现重复的主机标识。</p>
+<p>路由器是根据网络标识进行路由的。当到了目的网段后，再根据目的IP找到目的主机的MAC发送过去（下一跳的目的地是主机）。</p>
+<h2 id="1、IP地址的分类"><a href="#1、IP地址的分类" class="headerlink" title="1、IP地址的分类"></a>1、IP地址的分类</h2><p>共4个分类：A、B、C、D类。</p>
+<ol>
+<li><p>A类<br>首位以0开头，第1位到第8位是网络标识，网络地址范围：0.0.0.0~127.0.0.0（网络号全1，主机号全0）。后24位是主机标识。</p>
 </li>
-<li>利用Hessian矩阵计算使泰勒级数下降最多的最优步长：<script type="math/tex; mode=display">
-\epsilon'=\frac{g^Tg}{g^THg}</script>其中$g$是梯度，$H$是$x_0$点的Hessian矩阵。其本质是根据$f(x)$在$x_0$的近似二阶泰勒展开级数：<script type="math/tex; mode=display">
-f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script>于是有：<script type="math/tex; mode=display">
-f(x_0-\epsilon g)\approx f(x_0)-\epsilon g^Tg+\frac 12 \epsilon^2g^THg</script>当$g^THg$为正时，可以通过二次方程求解出最优$\epsilon$。最坏的情况下,$g$与$H$最大特征值$\lambda$对应的特征向量对齐，则最优步长是$\frac{1}{\lambda_{max}}$ 。</li>
+<li><p>B类<br>首位以10开头，1到16位是网络地址，网络地址范围：128.0.0.0~191.255.0.0。后16位是主机标识。</p>
+</li>
+<li><p>C类<br>首位以110开头，1到24位是网络地址，网络地址范围：192.0.0.0~223.255.255.0。后8位是主机标识。</p>
+</li>
+<li><p>D类<br>首位以1110开头，1到32位是网络地址，网络地址范围：224.0.0.0~239.255.255.255。没有主机标识，常用于多播地址。</p>
+</li>
 </ol>
-<h1 id="二、牛顿法"><a href="#二、牛顿法" class="headerlink" title="二、牛顿法"></a>二、牛顿法</h1><p>梯度下降法没有利用到二阶导数的信息，不知道导数的变化，所以也不知道应该优先探索导数长期为负的方向。如下图的例子，在此情况下最陡峭的方向实际上不是最有前途的搜索方向。<br><img src="\uploads\梯度.png" alt="梯度"><br>我们可以使用Hessian矩阵的信息来指导搜索，以解决这个问题。其中最简单的方法是牛顿法。其基于二阶泰勒展开：</p>
-<script type="math/tex; mode=display">
-f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以得到函数驻点为：</p>
-<script type="math/tex; mode=display">x^*=x_0-H^{-1}\nabla_xf(x_0)</script><p>牛顿法则需要多次迭代。迭代地更新近似函数和跳到近似函数的最小点可以比梯度下降更快地到达临界点。当附近的临界点是最小点（Hessian 的所有特征值都是正的）时牛顿法才适用，而梯度下降不会被吸引到鞍点(除非梯度指向鞍点)。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>仅使用梯度信息的优化算法被称为 一阶优化算法，如梯度下降。使用Hessian矩阵的优化算法被称为 二阶最优化算法，如牛顿法。</p>
+<p>主机号不可为全0或全1，其有特殊含义。全0代表对应地网络地址或IP地址不可获知。全1代表广播地址。</p>
+<h2 id="2、广播地址"><a href="#2、广播地址" class="headerlink" title="2、广播地址"></a>2、广播地址</h2><p>主机号全1为广播地址，用于向同一链路的所有主机发送IP数据包。对于以太网，此时主机或者路由器会将以太网数据帧的目的MAC地址设为FF:FF:FF:FF:FF:FF的广播MAC地址。保证在链路层所有主机能收下帧不抛弃。</p>
+<p>对于主机和路由器，他们只接收目的IP地址为自己，或广播，或自己组对应的多播地址的IP数据包。解析他们发给自己的上层。</p>
+<p>本地广播会被路由器隔离，不会到别的网段。一般路由器会屏蔽本地的广播包，因为再转发它到本地会造成重复广播。而直接广播是不同网络间的广播，路由器会转发广播包到下一个路由器。</p>
+<h2 id="3、IP多播"><a href="#3、IP多播" class="headerlink" title="3、IP多播"></a>3、IP多播</h2><p>用于将IP包发送给特定组内的所有主机。广播发送的包会让IP的上一层判断是否有必要接收数据，且无法穿透路由器。多播既可实现只给必要的组发数据包，有可以穿透路由器（发数据包给不同网段内的组内设备）。其具体实现上往往采用复制1对1通信的数据，将其同时发送给多个主机的方式。</p>
+<p>多播使用D类地址。其中224.0.0.0~224.0.0.255的范围不需要路由控制，即同一链路内的多播地址，往这个地址发，就是往链路中所有属于这个组的设备发，其有既定已知的多播地址，如224.0.0.1是子网内路由器以外的所有主机，224.0.0.2子网内所有路由器。在这范围之外设置多播地址会给<strong>全网</strong>所有组内成员发多播包。由于范围太大，通常设置TTL生存时间来限制到达范围。</p>
+<h2 id="4、子网掩码"><a href="#4、子网掩码" class="headerlink" title="4、子网掩码"></a>4、子网掩码</h2><p>A类、B类的主机号太多了，一个网段内不可能有那么多主机。因此将原来A、B、C类的主机地址一部分用作子网地址，将原网络分为多个物理网络。子网掩码必须是IP地址的首位开始连续的“1”。注意子网掩码是原网络号的延长，因此一定要比原来的网络号位数多。如172开头的网络号是B类地址，其原网络后就有16位，因此子网掩码位数一定要大于16。</p>
+<p><strong>注意A类地址中以0、10、127开头的A类地址（网络号）是具有特殊意义的保留地址。</strong></p>
+<h2 id="5、CIDR和VLSM"><a href="#5、CIDR和VLSM" class="headerlink" title="5、CIDR和VLSM"></a>5、CIDR和VLSM</h2><p>CIDR意为“无类型域间路由”，可以采用任意长度分割IP地址的网络标识和主机标识。其用于将许多小的网络（如C类，每个网络只有254个主机）合成一个更大的网络。注意其与子网掩码的区别。子网掩码是将大的A、B类地址分成小的，而CIDR是将多个小的C类合成大的。</p>
+<p>VLSM是可变长子网掩码。过去的子网掩码是固定长度的。一个A类地址只能分成固定大小，固定数目的子网，不灵活。采用VLSM，可以将网络任意划分。</p>
+<h2 id="6、全局地址与私有地址"><a href="#6、全局地址与私有地址" class="headerlink" title="6、全局地址与私有地址"></a>6、全局地址与私有地址</h2><p>没必要为所有的主机分配固定的全局IP地址（公网IP），他们关机或不连公网的时候就不用给他们公网IP。只需要保证他们在网络内的私有地址唯一即可。私有IP范围：<br>A类：10.0.0.0~10.255.255.255<br>B类：172.16.0.0~172.16.255.255<br>C类：192.168.0.0~192.168.255.255</p>
+<p>当他们需要连接公网时，利用NAT技术将私有IP和公网IP转化，从而进行互联网通信。缓解了IP地址的紧张。</p>
+<p>存在一个提供商来提供全局IP地址，对于FTTH和ADSL服务，提供商会直接给用户分配全局IP地址。一般的用户是向ISP（运营商）提出连网要求，由他们为我们向提供商请求分配全局IP。这个全局IP不是固定的，每次重连分配得到的IP可能都不一样。且每一台主机申请得到一个全局IP。</p>
+<p>不过现在很少给每个主机分配全局IP了，往往是一个LAN中只给代理服务器(网关)，提供少数几个全局IP，根据NAT技术让子网内的主机连接互联网。</p>
 
       
     </div>
@@ -419,7 +438,7 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+            <a href="/tags/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C/" rel="tag"># 通信网络</a>
           
         </div>
       
@@ -432,8 +451,8 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/27/Theme-Next/" rel="next" title="Hexo博客框架的Next主题配置">
-                <i class="fa fa-chevron-left"></i> Hexo博客框架的Next主题配置
+              <a href="/2019/11/16/TCP-IP-part4-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="TCP-IP-part4-数据链路（二）">
+                <i class="fa fa-chevron-left"></i> TCP-IP-part4-数据链路（二）
               </a>
             
           </div>
@@ -442,8 +461,8 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/28/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E5%92%8C%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE/" rel="prev" title="机器学习中的最大似然和均方误差">
-                机器学习中的最大似然和均方误差 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/23/TCP-IP-part6-IP%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="prev" title="TCP-IP-part6-IP协议（二）">
+                TCP-IP-part6-IP协议（二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -672,7 +691,7 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、梯度下降法"><span class="nav-number">2.</span> <span class="nav-text">一、梯度下降法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、牛顿法"><span class="nav-number">3.</span> <span class="nav-text">二、牛顿法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、IP即网际协议"><span class="nav-number">2.</span> <span class="nav-text">一、IP即网际协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、IP基础知识"><span class="nav-number">3.</span> <span class="nav-text">二、IP基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、IP地址属于网络层地址"><span class="nav-number">3.1.</span> <span class="nav-text">1、IP地址属于网络层地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、路由控制"><span class="nav-number">3.2.</span> <span class="nav-text">2、路由控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、数据链路的抽象化"><span class="nav-number">3.3.</span> <span class="nav-text">3、数据链路的抽象化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、IP属于面向无连接的"><span class="nav-number">3.4.</span> <span class="nav-text">4、IP属于面向无连接的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、IP地址的基础知识"><span class="nav-number">4.</span> <span class="nav-text">三、IP地址的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、IP地址的分类"><span class="nav-number">4.1.</span> <span class="nav-text">1、IP地址的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、广播地址"><span class="nav-number">4.2.</span> <span class="nav-text">2、广播地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、IP多播"><span class="nav-number">4.3.</span> <span class="nav-text">3、IP多播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、子网掩码"><span class="nav-number">4.4.</span> <span class="nav-text">4、子网掩码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、CIDR和VLSM"><span class="nav-number">4.5.</span> <span class="nav-text">5、CIDR和VLSM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、全局地址与私有地址"><span class="nav-number">4.6.</span> <span class="nav-text">6、全局地址与私有地址</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -908,26 +927,6 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

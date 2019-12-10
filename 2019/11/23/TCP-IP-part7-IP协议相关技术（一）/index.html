@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="机器学习," />
+  <meta name="keywords" content="通信网络," />
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="前言最近做项目需要深度学习的内容，于是阅读了《deep learning》这部经典书籍。参考其中有关机器学习的内容，在此整理优化算法中广泛应用的梯度下降法和牛顿法。">
-<meta name="keywords" content="机器学习">
+<meta name="description" content="前言仅凭IP是无法完成通信的，需要一些IP的辅助技术。这些技术的包格式可能不一样，但它们都是基于IP地址进行的，都是通过匹配路由表来进行的，只是功能不一样。例如DHCP分配IP地址，它只管通知这条信息，具体怎么分还要依靠上层。 TCP&#x2F;IP相关内容第七部分，包含：  DNS ARP ICMP">
+<meta name="keywords" content="通信网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="梯度下降法和牛顿法">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;Gradient-descent-and-Newton-algorithm&#x2F;index.html">
+<meta property="og:title" content="TCP-IP-part7-IP协议相关技术（一）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;23&#x2F;TCP-IP-part7-IP%E5%8D%8F%E8%AE%AE%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%80%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="前言最近做项目需要深度学习的内容，于是阅读了《deep learning》这部经典书籍。参考其中有关机器学习的内容，在此整理优化算法中广泛应用的梯度下降法和牛顿法。">
+<meta property="og:description" content="前言仅凭IP是无法完成通信的，需要一些IP的辅助技术。这些技术的包格式可能不一样，但它们都是基于IP地址进行的，都是通过匹配路由表来进行的，只是功能不一样。例如DHCP分配IP地址，它只管通知这条信息，具体怎么分还要依靠上层。 TCP&#x2F;IP相关内容第七部分，包含：  DNS ARP ICMP">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;uploads&#x2F;梯度.png">
-<meta property="og:updated_time" content="2019-10-28T14:27:10.532Z">
+<meta property="og:updated_time" content="2019-11-30T08:36:31.066Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;uploads&#x2F;梯度.png">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/27/Gradient-descent-and-Newton-algorithm/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/23/TCP-IP-part7-IP协议相关技术（一）/"/>
 
 
 
 
 
-  <title>梯度下降法和牛顿法 | ChaosHill</title>
+  <title>TCP-IP-part7-IP协议相关技术（一） | ChaosHill</title>
   
 
 
@@ -253,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Gradient-descent-and-Newton-algorithm/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/23/TCP-IP-part7-IP%E5%8D%8F%E8%AE%AE%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaos">
@@ -270,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">梯度下降法和牛顿法</h1>
+          <h1 class="post-title" itemprop="name headline">TCP-IP-part7-IP协议相关技术（一）</h1>
         
 
         <div class="post-meta">
@@ -282,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T22:18:08+08:00">
-                2019-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-23T22:11:09+08:00">
+                2019-11-23
               </time>
             
 
@@ -351,33 +349,47 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近做项目需要深度学习的内容，于是阅读了<a href="http://www.deeplearningbook.org/" target="_blank" rel="noopener">《deep learning》</a>这部经典书籍。参考其中有关机器学习的内容，在此整理优化算法中广泛应用的梯度下降法和牛顿法。<br><a id="more"></a></p>
-<h1 id="一、梯度下降法"><a href="#一、梯度下降法" class="headerlink" title="一、梯度下降法"></a>一、梯度下降法</h1><blockquote>
-<p>优化指的是改变$ x $以最小化或最大化某个函数$f(x)$的任务。我们通常以最小化$f(x)$指代大多数最优化问题。</p>
-</blockquote>
-<p>针对具有多维输入的函数，梯度是相对一个向量求得的导数，记为：$\nabla_xf(x)$。在$\mu$（单位向量）方向的方向导数是函数在$\mu$方向的斜率。为了最小化$f$，我们希望找到使$f$下降得最快的方向。计算方向导数：</p>
-<script type="math/tex; mode=display">
-min\  \mu^T\nabla_xf(x)
-\\=min\ ||\mu||_2||\nabla_xf(x)||_2\cos\theta</script><p>这在$\mu$与梯度方向相反时取得最小。换句话说，梯度向量指向上坡,负梯度向量指向下坡。我们在负梯度方向上移动可以减小$f$.因此<strong>最速下降</strong>建议新的点为：</p>
-<script type="math/tex; mode=display">
-x'=x-\epsilon\nabla_xf(x)</script><p>其中$\epsilon$为学习率，是一个确定步长大小的正标量。其选择的方式有几种：</p>
-<ol>
-<li>选择一个小的常数，缺点是收敛速度太慢。</li>
-<li>线搜索，其优点在于能以较快的速度收敛于临界点。可以进一步分为：<ul>
-<li>精确线搜索：包括黄金分割法、抛物线法等等。</li>
-<li>非精确线搜索：Wolfe准则、Armijo准则等。</li>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>仅凭IP是无法完成通信的，需要一些IP的辅助技术。这些技术的包格式可能不一样，但它们都是基于IP地址进行的，都是通过匹配路由表来进行的，只是功能不一样。例如DHCP分配IP地址，它只管通知这条信息，具体怎么分还要依靠上层。</p>
+<p>TCP/IP相关内容第七部分，包含：</p>
+<ul>
+<li>DNS</li>
+<li>ARP</li>
+<li>ICMP</li>
 </ul>
-</li>
-<li>利用Hessian矩阵计算使泰勒级数下降最多的最优步长：<script type="math/tex; mode=display">
-\epsilon'=\frac{g^Tg}{g^THg}</script>其中$g$是梯度，$H$是$x_0$点的Hessian矩阵。其本质是根据$f(x)$在$x_0$的近似二阶泰勒展开级数：<script type="math/tex; mode=display">
-f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script>于是有：<script type="math/tex; mode=display">
-f(x_0-\epsilon g)\approx f(x_0)-\epsilon g^Tg+\frac 12 \epsilon^2g^THg</script>当$g^THg$为正时，可以通过二次方程求解出最优$\epsilon$。最坏的情况下,$g$与$H$最大特征值$\lambda$对应的特征向量对齐，则最优步长是$\frac{1}{\lambda_{max}}$ 。</li>
+<a id="more"></a>
+<h1 id="一、DNS"><a href="#一、DNS" class="headerlink" title="一、DNS"></a>一、DNS</h1><p>IP地址不好记，我们希望用主机名代替。DNS负责将主机名转换为具体的IP地址。</p>
+<p>早期的方法是集中管理一个大型的数据库，所有主机都要下载这个文件，更新主机名和地址的时候要通知所有人，非常麻烦。<br>现在用DNS维护一个用来表示<strong>组织内部</strong>主机名和IP地址之间对应关系的数据库。地址和主机名的变更只需要在组织机构内部进行即可，不需要向别的机构申请或报告。较小的范围内通过DNS管理主机名映射，很方便。</p>
+<h2 id="域名的构成"><a href="#域名的构成" class="headerlink" title="域名的构成"></a>域名的构成</h2><p>域名是指为了识别主机名称和组织机构名称的一种具有分层的名称。在使用域名时，可以在每个主机名后追加上组织机构的域名。主机名重合，但只要组织机构域名不重合就可以。</p>
+<p>分层结构呈树状结构，顶点是根，下一层第一层域名包括国家域名和特定机构域名（如所有美国教育机构.edu、所有美国企业.com），在下一层可以是地域的通用域名，或是不同组织机构的属性域名。</p>
+<h3 id="域名服务器"><a href="#域名服务器" class="headerlink" title="域名服务器"></a>域名服务器</h3><p>每层域名都有一个域名服务器，实质上是个软件。每个域名服务器都有一个IP地址，本层的域名服务器都了解（注册了）本域内下层域名服务器的IP地址，直到再无下一层域名，就可以连主机，指定主机名给IP地址了。另外，每个域名服务器必须注册所在区域的根域名服务器的IP地址（全球共13个），在查找非本域的时候从跟开始。</p>
+<p>为了提高容灾能力，一个域名至少设置两个以上域名服务器。</p>
+<h3 id="解析器"><a href="#解析器" class="headerlink" title="解析器"></a>解析器</h3><p>解析器，即需要进行DNS查询的主机，就是你的电脑。其至少要注册一个以上的域名服务器IP地址，解析器不仅可以访问本域名中的域名服务器，也可访问其他域的域名服务器，进行域名查询。</p>
+<h2 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h2><p>解析器相域名服务器申请查询，域名服务器会先在自己的数据库查找，没找到则相跟域名服务器申请查询，从上往下顺序遍历，找到返回。解析器和域名服务器都有缓存，可以保存最新了解到的信息，可以减少查询。</p>
+<p>DNS不仅保留主机名和IP地址的映射，也保留了其他如邮件地址等映射。</p>
+<h1 id="二、ARP"><a href="#二、ARP" class="headerlink" title="二、ARP"></a>二、ARP</h1><p>主机发送IP数据包，封装成帧时的目的MAC只是同一个数据链路上的节点的MAC，甚至同一个链路上也可能只知道IP，不知道MAC。</p>
+<p>用来根据IP地址查询MAC地址。ARP只适用于IPv4，IPv6用ICMPv6替代ARP发送邻居探索信息。</p>
+<h2 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h2><p>借助ARP请求和ARP响应完成。ARP发送的包格式与IPv4是不一样的，因此需要不同的程序去处理。</p>
+<p>起初通过广播发送一个ARP请求包，包中包含了目的主机的IP地址，在链路层，ARP包会被链路层默认封装成广播帧，在网络层，接收方默认认为ARP包是广播的，不想IP包目的IP要全1才是广播，才接受下来去解析。当解析后发现目的IP与自己的IP一致，则返回ARP响应包，里面有自己的MAC地址，目的IP是从请求包中了解到的。ARP包会被路由器隔离。</p>
+<p>IP地址和MAC地址的信息缓存一段时间，下次发送时会先查表，可以减少ARP查询。但要定时清楚缓存，要是不换的话IP可能已经更换了MAC设备，就不可达了。</p>
+<h2 id="RARP"><a href="#RARP" class="headerlink" title="RARP"></a>RARP</h2><p>与ARP相反。设置RARP服务器，设备发送自己的MAC地址给服务器，可以获得IP地址来设置。因为有些硬件设备不具备DHCP动态获取IP的功能，只能用RARP获取IP。</p>
+<h2 id="代理ARP"><a href="#代理ARP" class="headerlink" title="代理ARP"></a>代理ARP</h2><p>通常ARP包会被路由器隔离，采用代理ARP可以将ARP请求转发给邻近的网段，使两个以上的网段节点像在一个网段上一样通信。</p>
+<h1 id="三、ICMP"><a href="#三、ICMP" class="headerlink" title="三、ICMP"></a>三、ICMP</h1><p>起到辅助IP的作用，ICMP数据是放在IP首部的后面，就像TCP/UDP一样明文传输，因此是IP的上层协议，但它是为了分担IP的一部分功能，因此仍属于网络层。ICMP两大类型：</p>
+<ol>
+<li>通知出错原因的<strong>错误信息</strong>。</li>
+<li>用于诊断的<strong>查询信息</strong>。</li>
 </ol>
-<h1 id="二、牛顿法"><a href="#二、牛顿法" class="headerlink" title="二、牛顿法"></a>二、牛顿法</h1><p>梯度下降法没有利用到二阶导数的信息，不知道导数的变化，所以也不知道应该优先探索导数长期为负的方向。如下图的例子，在此情况下最陡峭的方向实际上不是最有前途的搜索方向。<br><img src="\uploads\梯度.png" alt="梯度"><br>我们可以使用Hessian矩阵的信息来指导搜索，以解决这个问题。其中最简单的方法是牛顿法。其基于二阶泰勒展开：</p>
-<script type="math/tex; mode=display">
-f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以得到函数驻点为：</p>
-<script type="math/tex; mode=display">x^*=x_0-H^{-1}\nabla_xf(x_0)</script><p>牛顿法则需要多次迭代。迭代地更新近似函数和跳到近似函数的最小点可以比梯度下降更快地到达临界点。当附近的临界点是最小点（Hessian 的所有特征值都是正的）时牛顿法才适用，而梯度下降不会被吸引到鞍点(除非梯度指向鞍点)。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>仅使用梯度信息的优化算法被称为 一阶优化算法，如梯度下降。使用Hessian矩阵的优化算法被称为 二阶最优化算法，如牛顿法。</p>
+<p>ICMP有多个消息类型，每个消息类型有自己的错误号来说明信息。</p>
+<h2 id="1、主要的ICMP消息"><a href="#1、主要的ICMP消息" class="headerlink" title="1、主要的ICMP消息"></a>1、主要的ICMP消息</h2><h3 id="ICMP目标不可达信息（类型3）"><a href="#ICMP目标不可达信息（类型3）" class="headerlink" title="ICMP目标不可达信息（类型3）"></a>ICMP目标不可达信息（类型3）</h3><p>IP路由器无法将IP包发送给目标地址时，会给发送端主机返回一个目标不可达信息。错误号为1表示主机不可达，即找不到目的IP的MAC，ARP没人响应。错误号0表示网络不可达，即在路由表中找不到下一跳的IP。错误号4用于MTU发现，包不可分片。</p>
+<h3 id="ICMP重定向信息（类型5）"><a href="#ICMP重定向信息（类型5）" class="headerlink" title="ICMP重定向信息（类型5）"></a>ICMP重定向信息（类型5）</h3><p>路由器发现发端主机使用了次优的路径发送路径，就返回一个ICMP重定向信息，包含更合适的路由信息。但路由信息并不包含子网掩码，因此主机追加更优路由信息时，只会以“主机路由”形式（/32）为这个目的IP地址追加下一跳路由信息，且在一定时间后自动清除。一般不进行重定向设置。</p>
+<h3 id="ICMP超时信息（类型11）"><a href="#ICMP超时信息（类型11）" class="headerlink" title="ICMP超时信息（类型11）"></a>ICMP超时信息（类型11）</h3><p>错误号0表示TTL减到0，IP包被抛弃，返回ICMP超时消息。错误号1表示路由器在规定时间内没有收到所有分片，重组超时。</p>
+<p>traceroute命令就是利用ICMP超时信息工作。显示到达特定主机之前经历多少路由器。原理是利用IP包生存周期从1开始递增，同时发送UDP包，强制接收超时消息。</p>
+<h3 id="ICMP回送信息（类型0、8）"><a href="#ICMP回送信息（类型0、8）" class="headerlink" title="ICMP回送信息（类型0、8）"></a>ICMP回送信息（类型0、8）</h3><p>可以向对端主机发送回送请求（类型8），主机收到后回复一个应答消息（类型0）。Ping命令就是用这个实现的。</p>
+<h3 id="ICMP原点抑制信息（类型4）"><a href="#ICMP原点抑制信息（类型4）" class="headerlink" title="ICMP原点抑制信息（类型4）"></a>ICMP原点抑制信息（类型4）</h3><p>低速广域网时，WAN路由器遇到网络拥堵，会向源地址发送ICMP原点抑制信息。收到后主机打开IP包的传输间隔。一般不用。</p>
+<h3 id="ICMP路由器探索信息（类型9、10）"><a href="#ICMP路由器探索信息（类型9、10）" class="headerlink" title="ICMP路由器探索信息（类型9、10）"></a>ICMP路由器探索信息（类型9、10）</h3><p>用于发现与自己相连网络中的路由器。主机发出ICMP路由请求（类型10），路由器返回公告消息（类型9）。</p>
+<h3 id="ICMP地址掩码信息（类型17、18）"><a href="#ICMP地址掩码信息（类型17、18）" class="headerlink" title="ICMP地址掩码信息（类型17、18）"></a>ICMP地址掩码信息（类型17、18）</h3><p>主机或路由器向了解子网掩码情况。向目标主机或路由器发送ICMP地址掩码请求信息（类型17），收方返回地址掩码应答信息（类型18），收房获得子网掩码信息。</p>
+<h2 id="2、ICMPv6"><a href="#2、ICMPv6" class="headerlink" title="2、ICMPv6"></a>2、ICMPv6</h2><p>同样分为错误消息和信息消息。IPV6中使用的ICMP，不再是辅助作用，而是不可缺少。IPV4中的ARP就是通过ICMPv6的邻居探索消息实现。</p>
+<p><strong>邻居探索消息</strong>，类型133-137。用于查询IPv6地址和MAC地址的对用关系。采用<strong>多播地址</strong>传输。</p>
+<p>得益于IPV6用MAC地址作主机标识，IPv6也实现了即插即用，不需要DHCP服务器也能自动获取IP地址。在没有路由器的网络，就是用MAC地址作为链路本地单播地址。在有路由器的网络环境中，从路由器中获取前64bit，后64bit用MAC地址设置。</p>
 
       
     </div>
@@ -419,7 +431,7 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+            <a href="/tags/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C/" rel="tag"># 通信网络</a>
           
         </div>
       
@@ -432,8 +444,8 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/27/Theme-Next/" rel="next" title="Hexo博客框架的Next主题配置">
-                <i class="fa fa-chevron-left"></i> Hexo博客框架的Next主题配置
+              <a href="/2019/11/23/TCP-IP-part6-IP%E5%8D%8F%E8%AE%AE%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="TCP-IP-part6-IP协议（二）">
+                <i class="fa fa-chevron-left"></i> TCP-IP-part6-IP协议（二）
               </a>
             
           </div>
@@ -442,8 +454,8 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/28/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E5%92%8C%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE/" rel="prev" title="机器学习中的最大似然和均方误差">
-                机器学习中的最大似然和均方误差 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/30/TCP-IP-part8-IP%E5%8D%8F%E8%AE%AE%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="prev" title="TCP-IP-part8-IP协议相关技术（二）">
+                TCP-IP-part8-IP协议相关技术（二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -672,7 +684,7 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、梯度下降法"><span class="nav-number">2.</span> <span class="nav-text">一、梯度下降法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、牛顿法"><span class="nav-number">3.</span> <span class="nav-text">二、牛顿法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、DNS"><span class="nav-number">2.</span> <span class="nav-text">一、DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#域名的构成"><span class="nav-number">2.1.</span> <span class="nav-text">域名的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#域名服务器"><span class="nav-number">2.1.1.</span> <span class="nav-text">域名服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析器"><span class="nav-number">2.1.2.</span> <span class="nav-text">解析器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS查询"><span class="nav-number">2.2.</span> <span class="nav-text">DNS查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、ARP"><span class="nav-number">3.</span> <span class="nav-text">二、ARP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工作机制"><span class="nav-number">3.1.</span> <span class="nav-text">工作机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RARP"><span class="nav-number">3.2.</span> <span class="nav-text">RARP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理ARP"><span class="nav-number">3.3.</span> <span class="nav-text">代理ARP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、ICMP"><span class="nav-number">4.</span> <span class="nav-text">三、ICMP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、主要的ICMP消息"><span class="nav-number">4.1.</span> <span class="nav-text">1、主要的ICMP消息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP目标不可达信息（类型3）"><span class="nav-number">4.1.1.</span> <span class="nav-text">ICMP目标不可达信息（类型3）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP重定向信息（类型5）"><span class="nav-number">4.1.2.</span> <span class="nav-text">ICMP重定向信息（类型5）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP超时信息（类型11）"><span class="nav-number">4.1.3.</span> <span class="nav-text">ICMP超时信息（类型11）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP回送信息（类型0、8）"><span class="nav-number">4.1.4.</span> <span class="nav-text">ICMP回送信息（类型0、8）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP原点抑制信息（类型4）"><span class="nav-number">4.1.5.</span> <span class="nav-text">ICMP原点抑制信息（类型4）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP路由器探索信息（类型9、10）"><span class="nav-number">4.1.6.</span> <span class="nav-text">ICMP路由器探索信息（类型9、10）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP地址掩码信息（类型17、18）"><span class="nav-number">4.1.7.</span> <span class="nav-text">ICMP地址掩码信息（类型17、18）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、ICMPv6"><span class="nav-number">4.2.</span> <span class="nav-text">2、ICMPv6</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -908,26 +920,6 @@ f(x)\approx f(x_0)+(x-x_0)^Tg+\frac 12 (x-x_0)^TH(x-x_0)</script><p>据此可以
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
