@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Blog," />
+  <meta name="keywords" content="通信网络," />
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="前言一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。最近了解了一些博客框架，包括动态博客：大名鼎鼎的 wordpress，和静态博客：hexo、jekyll、gohugo、vuepress。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。这篇文章主要记录Hexo博客框架的搭建和部署到Git">
-<meta name="keywords" content="Blog">
+<meta name="description" content="前言TCP&#x2F;IP相关内容第十一部分，包含：  路由控制 路由算法 RIP OSPF BGP MPLS">
+<meta name="keywords" content="通信网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客框架的搭建与部署">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;Blog&#x2F;index.html">
+<meta property="og:title" content="TCP-IP-part11-路由协议">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;15&#x2F;TCP-IP-part11-%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="前言一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。最近了解了一些博客框架，包括动态博客：大名鼎鼎的 wordpress，和静态博客：hexo、jekyll、gohugo、vuepress。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。这篇文章主要记录Hexo博客框架的搭建和部署到Git">
+<meta property="og:description" content="前言TCP&#x2F;IP相关内容第十一部分，包含：  路由控制 路由算法 RIP OSPF BGP MPLS">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-27T13:20:26.040Z">
+<meta property="og:updated_time" content="2019-12-21T13:32:53.144Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/27/Blog/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/12/15/TCP-IP-part11-路由协议/"/>
 
 
 
 
 
-  <title>Hexo博客框架的搭建与部署 | ChaosHill</title>
+  <title>TCP-IP-part11-路由协议 | ChaosHill</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/15/TCP-IP-part11-%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaos">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo博客框架的搭建与部署</h1>
+          <h1 class="post-title" itemprop="name headline">TCP-IP-part11-路由协议</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T19:44:04+08:00">
-                2019-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-15T13:19:09+08:00">
+                2019-12-15
               </time>
             
 
@@ -349,15 +349,90 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。<br>最近了解了一些博客框架，包括动态博客：大名鼎鼎的 <a href="https://www.wordpress.org" target="_blank" rel="noopener">wordpress</a>，和静态博客：<a href="https://www.hexo.io" target="_blank" rel="noopener">hexo</a>、<a href="https://www.jekyll.com" target="_blank" rel="noopener">jekyll</a>、<a href="https://www.gohugo.org" target="_blank" rel="noopener">gohugo</a>、<a href="vuepress.vuejs.org">vuepress</a>。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。<br>这篇文章主要记录Hexo博客框架的搭建和部署到Github上的流程。<br><a id="more"></a><br>需要安装git工具,其安装及配置参考：<a href="https://blog.csdn.net/huangqqdy/article/details/83032408" target="_blank" rel="noopener">https://blog.csdn.net/huangqqdy/article/details/83032408</a></p>
-<hr>
-<h1 id="一、Node-js下载与安装"><a href="#一、Node-js下载与安装" class="headerlink" title="一、Node.js下载与安装"></a>一、Node.js下载与安装</h1><p>在<a href="https//nodejs.org">Node.js</a>官网下载最新版本并安装。其中包含Node.js本身和npm包管理器，这两个是搭建博客框架不可少的。<br>在命令行终端 (windows用cmd就可以，本人用Git Bash) 用<code>node -v</code>和<code>npm -v</code>查看版本，确定是否安装成功。</p>
-<h1 id="二、Hexo下载与安装"><a href="#二、Hexo下载与安装" class="headerlink" title="二、Hexo下载与安装"></a>二、Hexo下载与安装</h1><p>由于国外服务器下载速度受限，考虑通过国内镜像源进行下载。<br>先用npm安装cnpm，镜像源为淘宝镜像。<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code><br>用<code>cnpm -v</code>验证安装是否成功。之后可以用cnpm安装hexo：<br><code>cnpm install -g hexo-cli</code><br>用<code>hexo -v</code>验证。</p>
-<h1 id="三、-使用Hexo搭建博客"><a href="#三、-使用Hexo搭建博客" class="headerlink" title="三、 使用Hexo搭建博客"></a>三、 使用Hexo搭建博客</h1><p>先创建一个空文件夹并进入：<br><code>mkdir /f/blog</code><br><code>cd /f/blog</code><br>使用hexo初始化一个博客：<br><code>hexo init</code><br>这个过程需要一段时间，完成之后会自动为你生成一些文件，其具体内容可以参考<a href="https://hexo.io/" target="_blank" rel="noopener">官方文档</a>。启动博客：<br><code>hexo s</code><br>可以在浏览器localhost:4000预览自己生成的博客。<br>生成博客文章：<br><code>hexo new &#39;blogtitle&#39;</code><br>之后在source/_posts目录下会生成blogtitle.md文件。可以基于Markdown格式对此进行编辑。<br>清理文件夹：<br><code>hexo clean</code><br>可以删除上次生成的public文件夹。之后再生成博客并启动：<br><code>hexo g &amp;&amp; hexo s</code></p>
-<h1 id="四、部署到Github上公开使用"><a href="#四、部署到Github上公开使用" class="headerlink" title="四、部署到Github上公开使用"></a>四、部署到Github上公开使用</h1><p>先登录自己的Github并建立一个新的仓库，注意用户部署个人博客的Github<strong>仓库的命名</strong>必须符合：<strong>用户名.github.io</strong>，后续在浏览器输入这个地址就可以访问博客。<br>回到hexo文件夹中，安装一个git部署插件：<br><code>cnpm install --save hexo-deployer-git</code><br>之后需要修改博客配置文件：<br><code>vim _config.yml</code><br>在Deployment配置中修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 刚才建立的Github仓库的地址</span><br><span class="line">  branch: master</span><br><span class="line">  message:</span><br></pre></td></tr></table></figure><br>之后就可以部署到Github：<br><code>hexo g</code><br>会提示你输入Github的账号及密码。可以配置SSH省去这个步骤，详情参考： <a href="https://blog.csdn.net/huangqqdy/article/details/83032408" target="_blank" rel="noopener">git的安装及配置</a>。<br>hexo部署后就可以公开访问<a href="https://用户名.github.io/。" target="_blank" rel="noopener">https://用户名.github.io/。</a></p>
-<h1 id="五、更换主题"><a href="#五、更换主题" class="headerlink" title="五、更换主题"></a>五、更换主题</h1><p>先下载主题：已yillia为例<br><code>git clone https://githu.com/litten/hexo-theme-yilia.git themes/yilia</code><br>之后在博客配置文件的Theme选项修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: yilia</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>更换Next主题及相关配置。<br>部署到远端服务器的操作，以阿里云ECS为例，更改安全组监听端口配置，服务器环境配置(Nginx配置)。参考:<a href="https://blog.csdn.net/NoCortY/article/details/99631249" target="_blank" rel="noopener">https://blog.csdn.net/NoCortY/article/details/99631249</a> 。注意服务器的博客实际存放目录(如：/home/www/website)的所有者一定是从本地机登录的git用户，鉴于在一开始没有足够权限，可以先用root用户创建，再在后期修改。参考：<a href="https://blog.csdn.net/m0_37286282/article/details/89496946" target="_blank" rel="noopener">https://blog.csdn.net/m0_37286282/article/details/89496946</a> 的Connection denied<br>修改后用<code>nginx -s reload</code>进行重载。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TCP/IP相关内容第十一部分，包含：</p>
+<ul>
+<li>路由控制</li>
+<li>路由算法</li>
+<li>RIP</li>
+<li>OSPF</li>
+<li>BGP</li>
+<li>MPLS</li>
+</ul>
+<a id="more"></a>
+<h1 id="一、路由控制"><a href="#一、路由控制" class="headerlink" title="一、路由控制"></a>一、路由控制</h1><p>路由控制即路由表制作的过程。路由控制分为<strong>静态</strong>和<strong>动态</strong>两个类型。静态路由是事先设置好路由信息并固定不再更改。而动态路由是让控制信息在路由协议执行过程中自动设置。</p>
+<p>静态路由通常由使用者手工操作完成。其缺点在于管理者负担大，需要对所有路由器进行维护，且发生故障时无法自动绕过。动态路由只需设置好路由协议，在新增网络的时候只需设置一个路由器而不用更改所有路由器，减少管理员负担。且网络发生故障时会绕过节点。缺点是交换路由信息给网络带来负荷。</p>
+<p>动态路由的基础是路由器给相邻的路由器发送自己已知的网络连接信息，并不断依次传播。直至整个网络都了解之后即制作完成路由表。</p>
+<p>自治系统（AS）或路由选择域，是指一个制定自己的路由策略的小型单位，ISP、区域网络都是典型的AS。在AS内部，一组路由器会被制定同样的路由协议、度量，路由范围不会离开AS，其对外接口是统一的，通过接口与各个AS相连。AS内部信息对外部是屏蔽的。</p>
+<p>AS内部动态路由的协议为：内部网关协议<strong>IGP</strong>，包括RIP（适用于小范围）、OSPF（适用于大范围）。AS间的路由控制为：外部网关协议<strong>EGP</strong>，包括<strong>BGP</strong>。</p>
+<h1 id="二、路由算法"><a href="#二、路由算法" class="headerlink" title="二、路由算法"></a>二、路由算法</h1><p>路由算法分为两类：距离向量算法（DV）和链路状态算法（LS）。</p>
+<h2 id="1、距离向量算法"><a href="#1、距离向量算法" class="headerlink" title="1、距离向量算法"></a>1、距离向量算法</h2><p>根据距离（代价——经过的路由器个数）和方向决定路由控制。路由器之间可以互换目标网络的方向及距离的相关信息，并以这些信息为基础制作路由控制表。这种方法弊端在于获得稳定路由信息之前可能要耗费很多时间。且极易发生路由循环问题。</p>
+<h2 id="2、链路状态算法"><a href="#2、链路状态算法" class="headerlink" title="2、链路状态算法"></a>2、链路状态算法</h2><p>路由器在了解网络整体连接状态的基础上生成路由控制表。每个路由器必须保持同样的信息，因此每一台路由器总能够保持正确的路由信息、进行稳定的路由选择。付出的代价就是如何才能从网络代理获取路由信息表。当网络结构复杂时，信息处理非常昂贵。</p>
+<h2 id="3、主要路由协议"><a href="#3、主要路由协议" class="headerlink" title="3、主要路由协议"></a>3、主要路由协议</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th style="text-align:center">下一层协议</th>
+<th style="text-align:right">方式</th>
+<th style="text-align:right">范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RIP</td>
+<td style="text-align:center">UDP</td>
+<td style="text-align:right">距离向量</td>
+<td style="text-align:right">AS内</td>
+</tr>
+<tr>
+<td>OSPF</td>
+<td style="text-align:center">IP</td>
+<td style="text-align:right">链路状态</td>
+<td style="text-align:right">AS内</td>
+</tr>
+<tr>
+<td>BGP</td>
+<td style="text-align:center">TCP</td>
+<td style="text-align:right">路径向量</td>
+<td style="text-align:right">AS间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="三、RIP协议"><a href="#三、RIP协议" class="headerlink" title="三、RIP协议"></a>三、RIP协议</h1><p>广泛应用于LAN，在UNIX系统上有守护进程。</p>
+<p>RIP规定每个路由器（AS内的）每隔30s向邻居发送一次距离方向信息，记录着自己到所有目的网络的距离（注意不是路由器）和下一跳路由器。收到邻居的路由信息会更新自己的路由信息并制作路由表。目的网络不可达的距离将标记为16（毒性逆转）。当路由器在6个周期（180s）都收不到邻居发来的信息时，将标记所有通过此路由器到达的目的网络（注意不是路由器）为不可达（距离16）。</p>
+<p>更新时会走距离小的路由，若距离相等，可以随机轮换选择。</p>
+<p>RIP中存在的问题是<strong>坏消息传的慢</strong>。当某网络发生故障不可达，由于路由器更新的滞后性会导致无限计数问题。采用最长距离16跳可以从时间上控制，使多次更新后收敛发现故障。通常采用毒性逆转好触发更新计数，当路由信息变化时不再是等待30s而是立刻发送出去，防止错误信息被发送出来。这样可以更快的收敛。</p>
+<p>OSPF是不会出现无限计数的问题。因为所有路由器所知道的链路状态信息都是一致的，某处断开了全网都能立刻知道，并制定合适的路由策略。不像RIP只有断开网络连接的一个路由器知道网络不可达，要通知所有的路由器收敛时间很长。</p>
+<p>RIP2是改良后的RIP协议，使用多播（RIP用广播），支持子网掩码（类似OSPF）、路由选择域（类似OSPF）、身份验证秘钥（类似OSPF）、外部路由标志。</p>
+<h1 id="四、OSPF协议"><a href="#四、OSPF协议" class="headerlink" title="四、OSPF协议"></a>四、OSPF协议</h1><p>OSPF是一种链路状态型路由协议，网络中即使有环路也能够进行稳定的路由。其支持子网掩码，支持区域路由。</p>
+<p>路由器之间交换链路状态生成的网络拓扑信息，包括<strong>某网络连接着哪些路由器，某个路由器连接着哪些网络，并且可以手动给每条链路手动赋予一个权重</strong>，然后路由器根据这个带权的图，通过Dijkstra算法得到任两点的最短路径。</p>
+<p>OSPF中可分为5中类型的包：hello、DBD数据库描述（会相互发送确认版本）、LSR链路状态请求、LSU链路状态更新、LSACK。</p>
+<p>hello包是用来确认邻居路由器的，会不断向邻居发，用来建立邻居关系。若超时（重发第四次：40s）则宣告邻居断开，链路状态（LSA）改变，此时这个路由器需要发送LSU告知自己的邻居链路状态的变化，LSU中包含具体网络LSA（哪个网络连着哪些路由器）和路由器LSA（某个路由器连接着哪些网络）两个通告，路由器收到通告后修改自己的链路状态数据库，并逐渐泛洪至所有路由器，路由器收到后用LASK确认。另一方面，当hello包发现新的路由器接入，链路状态也会发生变化，需要发送LSU泛洪链路信息。而新来的路由器从发来的DBD包中了解到最新的链路信息后，意识到自己需要更新，因此发送LSR包给邻居，邻居会返回LSU告知LSA，新人再返回LSACK。</p>
+<p>LSU会在两种情况下发送：</p>
+<ol>
+<li>通过hello包发现网络变化，自己更新了LSA后通过LSU泛洪告知所有人。</li>
+<li>邻居通过发来的DBD发现自己的链路状态数据库需要更新会发送LSR请求，必须响应邻居发来的LSR返回LSU。</li>
+</ol>
+<p>OSPF的缺点在于网络规模越大，算法的处理时间越长，对CPU和内存消耗越大。</p>
+<p>为减少计算负荷，OSPF引入区域的概念，一个AS内可以拥有多个区域。拥有多个区域的AS必须要有一个主干区域，所有区域必须都与这个主干区域相连接。因此会出现有四种路由器：</p>
+<ol>
+<li>区域边界路由器：连接区域和主干区域的路由器。</li>
+<li>内部路由器：只在区域内部的路由器。</li>
+<li>主干路由器：只在主干区域内的路由器。</li>
+<li>AS边界路由器：与外部连接的路由器，可以是内部路由器，也可以是主干路由器。</li>
+</ol>
+<p>每个区域内的路由器只持有本区域内的链路状态数据库，关于区域之外的路径信息，只能从边界路由器那里获知它们的距离，网络LSA和路由器LSA都不了解。区域边界路由器也不会把区域内的链路状态信息发给其他区域，同样只发送自己到区域内路由器的距离。如此区域内的路由器可以减少计算量。</p>
+<p>当需要向区域外的网络发送时，若区域出口的区域边界路由器只有一个（末端路由），则不需要比较其他信息，表项统统设为此路由器即可。而多个区域边界路由器时就需要选出到目标网络更近的路径的路由器了。</p>
+<h1 id="五、BGP协议"><a href="#五、BGP协议" class="headerlink" title="五、BGP协议"></a>五、BGP协议</h1><p>BGP协议即边界网关协议，属于EGP外部网关协议，用于ISP之间相互连接。BGP、RIP、OSPF共通工作完成路由控制。</p>
+<p>BGP的最终路由控制表也是由网络地址和下一站路由器的IP地址，这个表是<strong>路径信息访问列表</strong>，根据所要经过的AS个数进行路由控制最终生成的。每个自治系统(AS)会分配一个<strong>16比特的AS编号</strong>。BGP根据这个编号进行路由控制。每个AS内部的链路状态信息对于外部是未知的（技术、政治原因），其拥有一个AS代表（BGP扬声器），数据包只能通过BGP扬声器进入或离开AS，且各个AS通过它来交换BGP路由控制信息，告诉对方自己与哪些AS相连可达。AS需要签署合约再进行连接。合约规定了哪些AS可以作为哪些连接的中转等信息。</p>
+<h2 id="BGP是路径向量协议"><a href="#BGP是路径向量协议" class="headerlink" title="BGP是路径向量协议"></a>BGP是路径向量协议</h2><p>AS间的<strong>BGP扬声器</strong>建立连接（TCP）之后用<strong>EBGP</strong>协议交换BGP信息。在同一个AS内的多个BGP扬声器建立连接（TCP）之后用<strong>IBGP</strong>协议交换BGP信息。BGP基于AS之间的合约进行数据包的转发。在符合合约的规定下，BGP一般选择AS数最少的路径。在通信前发送<strong>BGP数据包</strong>，AS据此生成一个中途经过所有AS的编号列表，即AS路径信息访问表。它不仅包含了转发方向、距离，还包含了路径，因此是<strong>路径向量型协议</strong>。<strong>有了路径，就可以检测出环路，避免无限计数问题</strong>。<strong>BGP扬声器根据路径信息访问列表生成路由表</strong>。</p>
+<p><strong>BGP数据包</strong>是TCP报文，端口号179，只有BGP扬声器有应用程序去解析它，得到路径信息访问列表，更新路由表。</p>
+<h1 id="六、MPLS"><a href="#六、MPLS" class="headerlink" title="六、MPLS"></a>六、MPLS</h1><p>“多协议标记交换”技术。数据包在进入MPLS网络时，边缘路由器会对每个IP包打上标记，MPLS网络内的标记交换路由器会<strong>根据标记进行转发，而不是IP地址</strong>。出网络时删除标记。</p>
+<p>MPLS网络内实现路由功能的路由器叫做<strong>标记交换路由器</strong>，在网络边界对数据包追加和删除标记的路由器叫<strong>标记边缘路由器</strong>。附加标记有<strong>两种方式</strong>，一种是如果数据链路首部包含标记信息，则直接映射。一种是数据链路不包含标记信息（以太网），则追加一个全新的<strong>32比特垫片头</strong>，其中<strong>20比特</strong>是标记值，<strong>8比特</strong>TTL。垫片头被加在IP首部和数据链路首部之间。其会在<strong>每次转发时更换</strong>。</p>
+<p>IP包在进入MPLS网络根据其IP地址打上标记时，它的路径就已经设定好了，即<strong>标记交换路径LSP</strong>。MPLS内转发类似路由表，根据标签确定路径，并在每次转发更换一次标签。<strong>标记的分配和LSP的设置</strong>是根据下游(出mpls网络的地方)的标记边缘路由器的路由表分配标记，然后通告给上游的各个标记交换路由器来分配标记信息。然后最上游的路由器（进入MPLS网络的地方）设置这个方向的LSP。</p>
+<h2 id="MPLS的优点"><a href="#MPLS的优点" class="headerlink" title="MPLS的优点"></a>MPLS的优点</h2><p>第一个是转发速度快，不需要用IP地址最长匹配路径，而是用固定长度标记信息，处理更加简单。</p>
+<p>第二个是利用标记生成虚拟路径。</p>
 
       
     </div>
@@ -399,7 +474,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Blog/" rel="tag"># Blog</a>
+            <a href="/tags/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C/" rel="tag"># 通信网络</a>
           
         </div>
       
@@ -412,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/26/Markdown/" rel="next" title="常用Markdown语法">
-                <i class="fa fa-chevron-left"></i> 常用Markdown语法
+              <a href="/2019/12/08/TCP-IP-part10-TCP%E4%B8%8EUDP%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="TCP-IP-part10-TCP与UDP（二）">
+                <i class="fa fa-chevron-left"></i> TCP-IP-part10-TCP与UDP（二）
               </a>
             
           </div>
@@ -422,8 +497,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/27/Theme-Next/" rel="prev" title="Hexo博客框架的Next主题配置">
-                Hexo博客框架的Next主题配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/21/TCP-IP-part12-%E5%BA%94%E7%94%A8%E5%8D%8F%E8%AE%AE/" rel="prev" title="TCP-IP-part12-应用协议">
+                TCP-IP-part12-应用协议 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -652,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、Node-js下载与安装"><span class="nav-number">2.</span> <span class="nav-text">一、Node.js下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Hexo下载与安装"><span class="nav-number">3.</span> <span class="nav-text">二、Hexo下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-使用Hexo搭建博客"><span class="nav-number">4.</span> <span class="nav-text">三、 使用Hexo搭建博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、部署到Github上公开使用"><span class="nav-number">5.</span> <span class="nav-text">四、部署到Github上公开使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、更换主题"><span class="nav-number">6.</span> <span class="nav-text">五、更换主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后续"><span class="nav-number">7.</span> <span class="nav-text">后续</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、路由控制"><span class="nav-number">2.</span> <span class="nav-text">一、路由控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、路由算法"><span class="nav-number">3.</span> <span class="nav-text">二、路由算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、距离向量算法"><span class="nav-number">3.1.</span> <span class="nav-text">1、距离向量算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、链路状态算法"><span class="nav-number">3.2.</span> <span class="nav-text">2、链路状态算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、主要路由协议"><span class="nav-number">3.3.</span> <span class="nav-text">3、主要路由协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、RIP协议"><span class="nav-number">4.</span> <span class="nav-text">三、RIP协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、OSPF协议"><span class="nav-number">5.</span> <span class="nav-text">四、OSPF协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、BGP协议"><span class="nav-number">6.</span> <span class="nav-text">五、BGP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BGP是路径向量协议"><span class="nav-number">6.1.</span> <span class="nav-text">BGP是路径向量协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、MPLS"><span class="nav-number">7.</span> <span class="nav-text">六、MPLS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MPLS的优点"><span class="nav-number">7.1.</span> <span class="nav-text">MPLS的优点</span></a></li></ol></li></ol></div>
             
 
           </div>

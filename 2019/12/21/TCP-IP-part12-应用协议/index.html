@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Blog," />
+  <meta name="keywords" content="通信网络," />
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="前言一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。最近了解了一些博客框架，包括动态博客：大名鼎鼎的 wordpress，和静态博客：hexo、jekyll、gohugo、vuepress。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。这篇文章主要记录Hexo博客框架的搭建和部署到Git">
-<meta name="keywords" content="Blog">
+<meta name="description" content="前言TCP&#x2F;IP相关内容第十二部分，包含：  远程登录 文件传输 电子邮件 WWW 网络管理 其他应用层协议">
+<meta name="keywords" content="通信网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客框架的搭建与部署">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;27&#x2F;Blog&#x2F;index.html">
+<meta property="og:title" content="TCP-IP-part12-应用协议">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;21&#x2F;TCP-IP-part12-%E5%BA%94%E7%94%A8%E5%8D%8F%E8%AE%AE&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="前言一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。最近了解了一些博客框架，包括动态博客：大名鼎鼎的 wordpress，和静态博客：hexo、jekyll、gohugo、vuepress。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。这篇文章主要记录Hexo博客框架的搭建和部署到Git">
+<meta property="og:description" content="前言TCP&#x2F;IP相关内容第十二部分，包含：  远程登录 文件传输 电子邮件 WWW 网络管理 其他应用层协议">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-27T13:20:26.040Z">
+<meta property="og:updated_time" content="2019-12-22T03:41:41.205Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/27/Blog/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/12/21/TCP-IP-part12-应用协议/"/>
 
 
 
 
 
-  <title>Hexo博客框架的搭建与部署 | ChaosHill</title>
+  <title>TCP-IP-part12-应用协议 | ChaosHill</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/Blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/TCP-IP-part12-%E5%BA%94%E7%94%A8%E5%8D%8F%E8%AE%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaos">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo博客框架的搭建与部署</h1>
+          <h1 class="post-title" itemprop="name headline">TCP-IP-part12-应用协议</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T19:44:04+08:00">
-                2019-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-21T21:39:21+08:00">
+                2019-12-21
               </time>
             
 
@@ -349,15 +349,56 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直想搭建一个属于自己的博客，用来做一些学习笔记，并记录自己在项目中踩过的坑。<br>最近了解了一些博客框架，包括动态博客：大名鼎鼎的 <a href="https://www.wordpress.org" target="_blank" rel="noopener">wordpress</a>，和静态博客：<a href="https://www.hexo.io" target="_blank" rel="noopener">hexo</a>、<a href="https://www.jekyll.com" target="_blank" rel="noopener">jekyll</a>、<a href="https://www.gohugo.org" target="_blank" rel="noopener">gohugo</a>、<a href="vuepress.vuejs.org">vuepress</a>。由于动态博客要求自己编写前端后端，过于繁琐因此暂时不予考虑。参考了挺多大牛的博客，最终还是选择使用Hexo来作为自己的博客框架。<br>这篇文章主要记录Hexo博客框架的搭建和部署到Github上的流程。<br><a id="more"></a><br>需要安装git工具,其安装及配置参考：<a href="https://blog.csdn.net/huangqqdy/article/details/83032408" target="_blank" rel="noopener">https://blog.csdn.net/huangqqdy/article/details/83032408</a></p>
-<hr>
-<h1 id="一、Node-js下载与安装"><a href="#一、Node-js下载与安装" class="headerlink" title="一、Node.js下载与安装"></a>一、Node.js下载与安装</h1><p>在<a href="https//nodejs.org">Node.js</a>官网下载最新版本并安装。其中包含Node.js本身和npm包管理器，这两个是搭建博客框架不可少的。<br>在命令行终端 (windows用cmd就可以，本人用Git Bash) 用<code>node -v</code>和<code>npm -v</code>查看版本，确定是否安装成功。</p>
-<h1 id="二、Hexo下载与安装"><a href="#二、Hexo下载与安装" class="headerlink" title="二、Hexo下载与安装"></a>二、Hexo下载与安装</h1><p>由于国外服务器下载速度受限，考虑通过国内镜像源进行下载。<br>先用npm安装cnpm，镜像源为淘宝镜像。<br><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code><br>用<code>cnpm -v</code>验证安装是否成功。之后可以用cnpm安装hexo：<br><code>cnpm install -g hexo-cli</code><br>用<code>hexo -v</code>验证。</p>
-<h1 id="三、-使用Hexo搭建博客"><a href="#三、-使用Hexo搭建博客" class="headerlink" title="三、 使用Hexo搭建博客"></a>三、 使用Hexo搭建博客</h1><p>先创建一个空文件夹并进入：<br><code>mkdir /f/blog</code><br><code>cd /f/blog</code><br>使用hexo初始化一个博客：<br><code>hexo init</code><br>这个过程需要一段时间，完成之后会自动为你生成一些文件，其具体内容可以参考<a href="https://hexo.io/" target="_blank" rel="noopener">官方文档</a>。启动博客：<br><code>hexo s</code><br>可以在浏览器localhost:4000预览自己生成的博客。<br>生成博客文章：<br><code>hexo new &#39;blogtitle&#39;</code><br>之后在source/_posts目录下会生成blogtitle.md文件。可以基于Markdown格式对此进行编辑。<br>清理文件夹：<br><code>hexo clean</code><br>可以删除上次生成的public文件夹。之后再生成博客并启动：<br><code>hexo g &amp;&amp; hexo s</code></p>
-<h1 id="四、部署到Github上公开使用"><a href="#四、部署到Github上公开使用" class="headerlink" title="四、部署到Github上公开使用"></a>四、部署到Github上公开使用</h1><p>先登录自己的Github并建立一个新的仓库，注意用户部署个人博客的Github<strong>仓库的命名</strong>必须符合：<strong>用户名.github.io</strong>，后续在浏览器输入这个地址就可以访问博客。<br>回到hexo文件夹中，安装一个git部署插件：<br><code>cnpm install --save hexo-deployer-git</code><br>之后需要修改博客配置文件：<br><code>vim _config.yml</code><br>在Deployment配置中修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 刚才建立的Github仓库的地址</span><br><span class="line">  branch: master</span><br><span class="line">  message:</span><br></pre></td></tr></table></figure><br>之后就可以部署到Github：<br><code>hexo g</code><br>会提示你输入Github的账号及密码。可以配置SSH省去这个步骤，详情参考： <a href="https://blog.csdn.net/huangqqdy/article/details/83032408" target="_blank" rel="noopener">git的安装及配置</a>。<br>hexo部署后就可以公开访问<a href="https://用户名.github.io/。" target="_blank" rel="noopener">https://用户名.github.io/。</a></p>
-<h1 id="五、更换主题"><a href="#五、更换主题" class="headerlink" title="五、更换主题"></a>五、更换主题</h1><p>先下载主题：已yillia为例<br><code>git clone https://githu.com/litten/hexo-theme-yilia.git themes/yilia</code><br>之后在博客配置文件的Theme选项修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: yilia</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>更换Next主题及相关配置。<br>部署到远端服务器的操作，以阿里云ECS为例，更改安全组监听端口配置，服务器环境配置(Nginx配置)。参考:<a href="https://blog.csdn.net/NoCortY/article/details/99631249" target="_blank" rel="noopener">https://blog.csdn.net/NoCortY/article/details/99631249</a> 。注意服务器的博客实际存放目录(如：/home/www/website)的所有者一定是从本地机登录的git用户，鉴于在一开始没有足够权限，可以先用root用户创建，再在后期修改。参考：<a href="https://blog.csdn.net/m0_37286282/article/details/89496946" target="_blank" rel="noopener">https://blog.csdn.net/m0_37286282/article/details/89496946</a> 的Connection denied<br>修改后用<code>nginx -s reload</code>进行重载。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TCP/IP相关内容第十二部分，包含：</p>
+<ul>
+<li>远程登录</li>
+<li>文件传输</li>
+<li>电子邮件</li>
+<li>WWW</li>
+<li>网络管理</li>
+<li>其他应用层协议</li>
+</ul>
+<a id="more"></a>
+<p>TCP/IP中的应用层包含了OSI的会话层、表示层、应用层三层功能。应用只需要关注功能的实现而不需要关注下层的传输过程，可以利用现有的应用协议，也可以自己定义一个新的应用协议。应用协议本质上就是定义一些字符串所对应的含义，并据此令计算机进行一系列响应。</p>
+<h1 id="一、远程登录"><a href="#一、远程登录" class="headerlink" title="一、远程登录"></a>一、远程登录</h1><p>目的是在计算机网络上实现主机和终端的关系。典型的有TELNET和SSH协议。</p>
+<h2 id="TELNET"><a href="#TELNET" class="headerlink" title="TELNET"></a>TELNET</h2><p>利用TCP连接，在服务器端设置好登录用户名和密码后，在本地机通过Telnet客户端发送<strong>文字命令</strong>给远程主机的Telnetd守护进程（23号端口），并通过SHELL告诉操作系统执行相应命令，并返回给客户端。通常用于连接路由器和交换机来进行设置。可采用行模式和透明模式（每输入一个字符都会发送到服务端）。</p>
+<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>加密的远程登录系统。可实现端口转发功能。先通过SSH服务器再转发给目标服务器。</p>
+<h1 id="二、文件传输"><a href="#二、文件传输" class="headerlink" title="二、文件传输"></a>二、文件传输</h1><p>FTP协议。一般的服务器同样需要先进行用户名密码身份验证。匿名服务器不用，其提供免费的拷贝服务。</p>
+<p>FTP需要两条TCP连接，一条用来控制，一条用来数据传输。21号端口用于控制连接，通过字符串发送请求，接收应答，无法传输数据。常见的有<strong>USER用户名、PASS密码、RETR下载、STORE上传、APPE追加内容到已有文件、LIST文件一览操作，和响应200连接成功、220TCP连接之后的欢迎信息、227客户端申请被动模式时的返回、230提示输入密码等等</strong>，之后会建立传输连接传输数据。传输连接端口号为20。由于数据传输连接的建立是反过来的，通常由于NAT的存在可能无法成功建立连接，因此常使用<strong>PASV</strong>命令将主动模式切换为被动模式，由客户端申请建立数据传输连接。</p>
+<p>FTP通过字符串作为命令和应答。采用此做法的还有SMTP、HTTP、POP3。字符串之间的空白表示标识之间的分割，换行表示不同的命令。</p>
+<p>FTP用于<strong>断点续传</strong>功能。</p>
+<h1 id="三、电子邮件"><a href="#三、电子邮件" class="headerlink" title="三、电子邮件"></a>三、电子邮件</h1><p>SMTP协议。原始方法是两个机器直接用TCP传邮件到硬件上，最大缺点是必须两个主机必须同时插电和联网。因此采用一直连电源的<strong>邮件服务器和从邮件服务器获取邮件的POP3协议</strong>。<strong>主机根据邮件地址通过DNS获得邮件服务器的地址</strong>。</p>
+<h2 id="邮件地址"><a href="#邮件地址" class="headerlink" title="邮件地址"></a>邮件地址</h2><p>采用：<strong>名称（用户名）@通信地址（主机名+域名）</strong>的方式。通信地址与域名构造相同，由DNS进行管理，不同的邮件地址将对用特定的邮件服务器。这些映射信息成为<strong>MX记录</strong>。</p>
+<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><p>采用MIME协议，起到表示层的功能。由于SMTP只能传输ASCII码，因此MIME会将任何二进制文件包括图片和音频转化为ASCII码再由SMTP传输并还原，以此达到传输多媒体作用。</p>
+<h2 id="发送协议"><a href="#发送协议" class="headerlink" title="发送协议"></a>发送协议</h2><p>SMTP协议，使用TCP的25端口号。连接上将进行控制、应答和数据发送。客户端以文本形式发出请求，客户端返回一个3位数字作为应答。每个指令和应答后都是换行。</p>
+<h2 id="接收协议"><a href="#接收协议" class="headerlink" title="接收协议"></a>接收协议</h2><h3 id="POP协议"><a href="#POP协议" class="headerlink" title="POP协议"></a>POP协议</h3><p>接收端从邮件服务器获取邮件用到的协议。同样通过一条TCP连接完成控制、应答和数据接收，采用字符串命令。</p>
+<h3 id="IMAP协议"><a href="#IMAP协议" class="headerlink" title="IMAP协议"></a>IMAP协议</h3><p>在POP中邮件由客户端进行管理，而IMAP中邮件由服务器进行管理。在不同计算机客户端上邮箱的信息也是同步的。</p>
+<h1 id="四、WWW"><a href="#四、WWW" class="headerlink" title="四、WWW"></a>四、WWW</h1><p>万维网，信息以超文本的形式展现出来，也叫作WEB。WEB的客户端叫做WEB浏览器。</p>
+<h2 id="WWW基本概念"><a href="#WWW基本概念" class="headerlink" title="WWW基本概念"></a>WWW基本概念</h2><p>3个概念：标识资源URI、Web页数据格式HTML、信息转发HTTP。</p>
+<h3 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h3><p><strong>统一资源标识符</strong>，对任何一个抽象或物理资源进行标识的字符串。用于主页地址、电子邮件、电话号码等。<br>URL作为<strong>统一资源定位符</strong>，是URI在www中实现的具体方式，网络中任何资源都由URL标识，是使用资源的绝对位置来进行标示的。</p>
+<p>URL的格式：</p>
+<p>协议名：//主机名：端口号/路径?访问内容#部分信息</p>
+<p>其中协议名、主机名、路径是不可少的。<br>协议名可以是http、https、ftp、file…网络中的协议，主机名可以是IP地址或域名，端口号默认为80http，路径是主机上该资源的位置。访问内容是给CGI的。</p>
+<p>例：http：//www.bilibili.com/dasao/av1234</p>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>记述Web页的一种语言（数据格式）。其作为表示层，将数据转化为统一格式交付给HTTP协议传输。</p>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>默认使用TCP80端口，在一条连接上进行请求、应答以及数据报文发送。主要命令有<strong>GET下载，PUT上传，肯定应答2xx，重定向请求3xx，客户端请求内容出错4xx，服务器错误5xx</strong></p>
+<h3 id="JAVASCRIPT"><a href="#JAVASCRIPT" class="headerlink" title="JAVASCRIPT"></a>JAVASCRIPT</h3><p>客户端程序和服务器端程序将使网络内容更丰富。JAVASCRIPT是<strong>嵌入HTML中</strong>的编程语言，下载之后JAVASCRIPT程序就可以在客户端得到执行，可以用于检测用户输入，动态显示Web页面内容。</p>
+<h3 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h3><p>服务器调用外部程序时使用的规范。没有CGI服务器只能返回硬盘中的静态数据，有了CGI可以实现调用外部程序和访问数据库，返回动态信息（论坛和电商）。</p>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>Web服务器用Cookie在客户端保存登录信息或网购购物车信息。通过检查Cookie可以确认是否为同一对端通信，这样购物车信息就不用方服务器中了。</p>
+<h1 id="五、网络管理"><a href="#五、网络管理" class="headerlink" title="五、网络管理"></a>五、网络管理</h1><p>SNMP协议，对连接到网络的设备进行远程管理，基于UDP协议。管理端叫管理器，被管理端叫代理。决定两者之间通信交互信息的正是SNMP。</p>
+<p>SNMP的三个部分：</p>
+<ol>
+<li>查询请求Fetch：要求设备返回信息，并从中读取数据，定期检查信息记录网络拥堵情况和设备异常。</li>
+<li>设置修改Store：按照设置进行修改</li>
+<li>事件通知Trap：遇到特殊情况时，代理将主动通知管理器。</li>
+</ol>
+<p>SNMP中交互的信息即MIB，它起到表示层的作用。</p>
+<p>RMON可以管理、监控多个设备。</p>
+<h1 id="六、其他应用层协议"><a href="#六、其他应用层协议" class="headerlink" title="六、其他应用层协议"></a>六、其他应用层协议</h1><h2 id="多媒体通信"><a href="#多媒体通信" class="headerlink" title="多媒体通信"></a>多媒体通信</h2><p>实时多媒体采用UDP传输。应用层呼叫控制采用SIP协议，数据传输控制采用RTP协议，数据格式采用压缩技术。</p>
+<h3 id="1、SIP"><a href="#1、SIP" class="headerlink" title="1、SIP"></a>1、SIP</h3><p>通话前要先拨通，相当于会话层的功能，起到呼叫控制的作用，其非常相似于HTTP的工作机制，根据字符串提供命令和返回响应（响应码与HTTP相似）。当连接建立，采用RTP规定传输方式，数据格式为压缩技术。</p>
+<h3 id="2、RTP"><a href="#2、RTP" class="headerlink" title="2、RTP"></a>2、RTP</h3><p>UDP不可靠，因此采用RTP给每个报文附加时间戳和序列号。接收端据此排序掌握是否丢包。</p>
+<h3 id="3、数据压缩"><a href="#3、数据压缩" class="headerlink" title="3、数据压缩"></a>3、数据压缩</h3><p>大量减少视频数据大小，相当于OSI表示层。</p>
+<h2 id="P2P"><a href="#P2P" class="headerlink" title="P2P"></a>P2P</h2><p>不再是客户端/服务器的形式，而是终端或主机不经过服务器直接1对1相互通信。互联网电话就用到了这个技术。</p>
 
       
     </div>
@@ -399,7 +440,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Blog/" rel="tag"># Blog</a>
+            <a href="/tags/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C/" rel="tag"># 通信网络</a>
           
         </div>
       
@@ -412,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/26/Markdown/" rel="next" title="常用Markdown语法">
-                <i class="fa fa-chevron-left"></i> 常用Markdown语法
+              <a href="/2019/12/15/TCP-IP-part11-%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/" rel="next" title="TCP-IP-part11-路由协议">
+                <i class="fa fa-chevron-left"></i> TCP-IP-part11-路由协议
               </a>
             
           </div>
@@ -421,10 +462,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/27/Theme-Next/" rel="prev" title="Hexo博客框架的Next主题配置">
-                Hexo博客框架的Next主题配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -652,7 +689,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、Node-js下载与安装"><span class="nav-number">2.</span> <span class="nav-text">一、Node.js下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Hexo下载与安装"><span class="nav-number">3.</span> <span class="nav-text">二、Hexo下载与安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-使用Hexo搭建博客"><span class="nav-number">4.</span> <span class="nav-text">三、 使用Hexo搭建博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、部署到Github上公开使用"><span class="nav-number">5.</span> <span class="nav-text">四、部署到Github上公开使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、更换主题"><span class="nav-number">6.</span> <span class="nav-text">五、更换主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后续"><span class="nav-number">7.</span> <span class="nav-text">后续</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、远程登录"><span class="nav-number">2.</span> <span class="nav-text">一、远程登录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TELNET"><span class="nav-number">2.1.</span> <span class="nav-text">TELNET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH"><span class="nav-number">2.2.</span> <span class="nav-text">SSH</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、文件传输"><span class="nav-number">3.</span> <span class="nav-text">二、文件传输</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、电子邮件"><span class="nav-number">4.</span> <span class="nav-text">三、电子邮件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#邮件地址"><span class="nav-number">4.1.</span> <span class="nav-text">邮件地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据格式"><span class="nav-number">4.2.</span> <span class="nav-text">数据格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送协议"><span class="nav-number">4.3.</span> <span class="nav-text">发送协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接收协议"><span class="nav-number">4.4.</span> <span class="nav-text">接收协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#POP协议"><span class="nav-number">4.4.1.</span> <span class="nav-text">POP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IMAP协议"><span class="nav-number">4.4.2.</span> <span class="nav-text">IMAP协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、WWW"><span class="nav-number">5.</span> <span class="nav-text">四、WWW</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WWW基本概念"><span class="nav-number">5.1.</span> <span class="nav-text">WWW基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#URI"><span class="nav-number">5.1.1.</span> <span class="nav-text">URI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">5.1.2.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">5.1.3.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVASCRIPT"><span class="nav-number">5.1.4.</span> <span class="nav-text">JAVASCRIPT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CGI"><span class="nav-number">5.1.5.</span> <span class="nav-text">CGI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">5.1.6.</span> <span class="nav-text">Cookie</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、网络管理"><span class="nav-number">6.</span> <span class="nav-text">五、网络管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、其他应用层协议"><span class="nav-number">7.</span> <span class="nav-text">六、其他应用层协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多媒体通信"><span class="nav-number">7.1.</span> <span class="nav-text">多媒体通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、SIP"><span class="nav-number">7.1.1.</span> <span class="nav-text">1、SIP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、RTP"><span class="nav-number">7.1.2.</span> <span class="nav-text">2、RTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、数据压缩"><span class="nav-number">7.1.3.</span> <span class="nav-text">3、数据压缩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2P"><span class="nav-number">7.2.</span> <span class="nav-text">P2P</span></a></li></ol></li></ol></div>
             
 
           </div>

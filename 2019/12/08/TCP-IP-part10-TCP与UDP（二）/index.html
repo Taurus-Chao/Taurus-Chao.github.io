@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;uploads&#x2F;udp.jpg">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;uploads&#x2F;TCP.png">
-<meta property="og:updated_time" content="2019-12-10T15:13:39.198Z">
+<meta property="og:updated_time" content="2019-12-10T16:40:19.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;uploads&#x2F;udp.jpg">
 
@@ -402,7 +402,7 @@
 </li>
 <li><p>包长度<br>2个字节，表示UDP首部长度和数据长度之和，单位为字节。</p>
 </li>
-<li><p>校验和<br>发方先根据源IP地址、目的IP地址、1字节填充0、1字节协议号（17）、2字节UDP包长度构造12个字节的伪首部，据此计算校验和的值放入UDP首部的校验和字段。删除伪首部之后封装IP首部并发送出去。收方收到UDP数据包后从IP首部获得IP地址后构造伪首部，计算校验和来与UDP首部的校验和比较。传输层对IP地址的校验是为了防止路由程序对数据的破坏。而网络层的校验是防止传输噪声的破坏。</p>
+<li><p>校验和<br>发方先根据源IP地址、目的IP地址、1字节填充0、1字节协议号（17）、2字节UDP包长度构造12个字节的伪首部，据此计算校验和的值放入UDP首部的校验和字段。删除伪首部之后封装IP首部并发送出去。收方收到UDP数据包后从IP首部获得IP地址后构造伪首部，计算校验和来与UDP首部的校验和比较。传输层对IP地址的校验是为了防止路由程序对数据的破坏。而网络层的校验是防止传输噪声的破坏。UDP的校验和可以不使用，填为0即可关闭。</p>
 </li>
 </ol>
 <h1 id="四、TCP首部格式"><a href="#四、TCP首部格式" class="headerlink" title="四、TCP首部格式"></a>四、TCP首部格式</h1><p><img src="/uploads/TCP.png" alt="TCP首部"></p>
@@ -424,7 +424,7 @@
 </li>
 <li><p>窗口大小<br>2个字节，用于通知从相同TCP首部的确认应答号所指位置开始能够接受的数据大小，单位字节，用于流控制。窗口为0时表示可以发送窗口探测，这个数据必须是一个字节。</p>
 </li>
-<li><p>校验和<br>2个字节，与UDP相同用12字节的伪首部计算。协议号为6。</p>
+<li><p>校验和<br>2个字节，与UDP相同用12字节的伪首部计算。协议号为6。TCP的校验和不可关闭，必须使用。</p>
 </li>
 <li><p>紧急指针<br>2个字节，在URG为1时有效，表示从数据部分首位到紧急指针所指位置为止为紧急数据，具体怎么处理是应用层的问题。</p>
 </li>
@@ -494,6 +494,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/15/TCP-IP-part11-%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/" rel="prev" title="TCP-IP-part11-路由协议">
+                TCP-IP-part11-路由协议 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -601,7 +605,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
