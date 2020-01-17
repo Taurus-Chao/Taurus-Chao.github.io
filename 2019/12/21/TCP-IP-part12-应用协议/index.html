@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="前言TCP&#x2F;IP相关内容第十二部分，包含：  远程登录 文件传输 电子邮件 WWW 网络管理 其他应用层协议">
+<meta name="description" content="前言TCP&#x2F;IP相关内容第十二部分，包含：  远程登录 文件传输 电子邮件 WWW 网络管理 其他应用层协议  TCP&#x2F;IP中的应用层包含了OSI的会话层、表示层、应用层三层功能。应用只需要关注功能的实现而不需要关注下层的传输过程，可以利用现有的应用协议，也可以自己定义一个新的应用协议。应用协议本质上就是定义一些字符串所对应的含义，并据此令计算机进行一系列响应。">
 <meta name="keywords" content="通信网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP-IP-part12-应用协议">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;21&#x2F;TCP-IP-part12-%E5%BA%94%E7%94%A8%E5%8D%8F%E8%AE%AE&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="前言TCP&#x2F;IP相关内容第十二部分，包含：  远程登录 文件传输 电子邮件 WWW 网络管理 其他应用层协议">
+<meta property="og:description" content="前言TCP&#x2F;IP相关内容第十二部分，包含：  远程登录 文件传输 电子邮件 WWW 网络管理 其他应用层协议  TCP&#x2F;IP中的应用层包含了OSI的会话层、表示层、应用层三层功能。应用只需要关注功能的实现而不需要关注下层的传输过程，可以利用现有的应用协议，也可以自己定义一个新的应用协议。应用协议本质上就是定义一些字符串所对应的含义，并据此令计算机进行一系列响应。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-22T03:41:41.205Z">
+<meta property="og:updated_time" content="2019-12-26T14:55:42.113Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -358,8 +358,8 @@
 <li>网络管理</li>
 <li>其他应用层协议</li>
 </ul>
-<a id="more"></a>
 <p>TCP/IP中的应用层包含了OSI的会话层、表示层、应用层三层功能。应用只需要关注功能的实现而不需要关注下层的传输过程，可以利用现有的应用协议，也可以自己定义一个新的应用协议。应用协议本质上就是定义一些字符串所对应的含义，并据此令计算机进行一系列响应。</p>
+<a id="more"></a>
 <h1 id="一、远程登录"><a href="#一、远程登录" class="headerlink" title="一、远程登录"></a>一、远程登录</h1><p>目的是在计算机网络上实现主机和终端的关系。典型的有TELNET和SSH协议。</p>
 <h2 id="TELNET"><a href="#TELNET" class="headerlink" title="TELNET"></a>TELNET</h2><p>利用TCP连接，在服务器端设置好登录用户名和密码后，在本地机通过Telnet客户端发送<strong>文字命令</strong>给远程主机的Telnetd守护进程（23号端口），并通过SHELL告诉操作系统执行相应命令，并返回给客户端。通常用于连接路由器和交换机来进行设置。可采用行模式和透明模式（每输入一个字符都会发送到服务端）。</p>
 <h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>加密的远程登录系统。可实现端口转发功能。先通过SSH服务器再转发给目标服务器。</p>
@@ -462,6 +462,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/26/TCP-IP-part13-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="prev" title="TCP-IP-part13-网络安全">
+                TCP-IP-part13-网络安全 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -569,7 +573,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -582,7 +586,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -709,7 +713,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

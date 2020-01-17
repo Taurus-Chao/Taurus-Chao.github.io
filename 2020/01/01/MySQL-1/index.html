@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言对MySQL概念常用命令的总结:数据库和SQL的介绍MySQL检索排序过滤数据创建计算字段函数汇总数据">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL-1">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;01&#x2F;MySQL-1&#x2F;index.html">
+<meta property="og:site_name" content="ChaosHill">
+<meta property="og:description" content="前言对MySQL概念常用命令的总结:数据库和SQL的介绍MySQL检索排序过滤数据创建计算字段函数汇总数据">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-07T14:39:02.157Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/01/MySQL-1/"/>
+
+
+
+
+
+  <title>MySQL-1 | ChaosHill</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ChaosHill</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Treasure-house</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/01/MySQL-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaos">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/portrait.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChaosHill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL-1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-01T22:55:29+08:00">
+                2020-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对MySQL概念常用命令的总结:<br>数据库和SQL的介绍<br>MySQL<br>检索<br>排序<br>过滤数据<br>创建计算字段<br>函数<br>汇总数据<br><a id="more"></a></p>
+<h1 id="数据库和SQL的介绍"><a href="#数据库和SQL的介绍" class="headerlink" title="数据库和SQL的介绍"></a>数据库和SQL的介绍</h1><p>数据库是保存有组织的数据的容器，通常是一个或一组文件。数据库软件称为DBMS（数据库管理系统），用户并不访问数据库，而是通过DBMS对数据库进行操作。</p>
+<p>数据库中的文件称为表，是某种特定类型数据的结构化清单。数据库中表的名字是唯一的。数据库和表的布局及特性称为模式。表由列组成，列也称为字段。每个列都需要确定数据类型。表中的数据是按行存储的，也称为一个记录。</p>
+<p>表中可以设定每一个记录的唯一标识——主键，其可以是一列或是一组列。主键不可为NULL，且不去更改。</p>
+<p>SQL是一种结构化查询语言，是一种用来与数据库通信的机器语言，多数DBMS都支持SQL。</p>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><p>MySQL是一种DBMS，是开源的。</p>
+<p>DBMS多数是客户机——服务器模式工作的。数据库服务器上的软件（DBMS）是真正与数据文件打交道的，客户机是与用户打交道的软件，客户不能直接访问数据文件，只能通过客户机软件用SQL语言提出请求，通过网络发送给DBMS，由DBMS根据请求去操作数据。</p>
+<p>服务器软件为MySQL DBMS。<br>客户机软件可以是MySQL命令行、脚本语言、C++、JAVA等。</p>
+<p>客户机是必不可少的，没有它就无法与DBMS发出请求。MySQL有三种常用客户机工具：</p>
+<ol>
+<li><p>mysql命令行。<br>安装DBMS时自带的软件。采用命令 <code>mysql -u 用户名 -p -h 服务器主机名 -P 端口号</code>，登录mysql指定服务器端口进程的指定用户（获取权限）。注意服务器对应端口必须打开。命令行中<code>exit</code>退出登录。命令用<code>;</code>或<code>\g</code>结束。可用<code>help 指令</code>查询用法。</p>
+</li>
+<li><p>MySQL Administrator<br>图形交互客户机，来简化MySQL服务器对用户的管理（新增用户、访问权限），查看系统状态。</p>
+</li>
+<li><p>MySQL Query Browser<br>图形交互客户机，用来编写和执行MySQL命令，并查看数据结果。</p>
+</li>
+</ol>
+<p>使用MySQL前必须登录以获得各种权限。 登录之后用</p>
+<ul>
+<li><code>USE 数据库名称；</code>选择数据库。</li>
+<li><code>SHOW DATABASES；</code>返回可用数据库列表，包括系统自带的。</li>
+<li><code>SHOW TABLES；</code>获得打开的数据库内表的列表。</li>
+<li><code>SHOW COLUMNS FROM 表名；</code>或<code>DESCRIBE 表名</code>返回表的所有字段的信息。</li>
+</ul>
+<h1 id="检索"><a href="#检索" class="headerlink" title="检索"></a>检索</h1><p>SELECT关键字负责检索。</p>
+<ul>
+<li><code>SELECT 列名 FROM 表名;</code>检索单个列所有行</li>
+<li><code>SELECT 列名1，列名2 FROM 表名;</code>检索多个列</li>
+<li><code>SELECT * FROM 表名;</code>检索所有列</li>
+<li><code>SELECT DISTINCT 列名 FROM 表名;</code>检索出指定列不同的行</li>
+<li><code>SELECT 列名 FROM 表名 LIMIT num;</code>只显示前num行</li>
+<li><code>SELECT 列名 FROM 表名 LIMIT startnum,num;</code>显示从startnum行开始下面的前num行（第一行为行0）</li>
+</ul>
+<p>SQL语句不区分大小写，包括关键字和参数名。但是习惯将关键字用大写，列和表名用小写。SQL语句所有空格会被忽略。多条SQL语句用<code>;</code>分隔。<br>完全限定名，指定数据库和表中的一列：<code>数据库名.表名.列名</code>。</p>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><ul>
+<li><code>SELECT 列名 FROM 表名 ORDER BY 列名</code>根据指定列名排序检索出的数据行。</li>
+</ul>
+<p>列名可给出多个，逗号分隔，按照给出的顺序依次排序。</p>
+<ul>
+<li><code>SELECT 列名 FROM 表名 ORDER BY 列名1 DESC,列名2 LIMIT 5;</code>列名后给出DESC关键字指明降序排序。LIMIT关键字必须在ORDER BY 之后。</li>
+</ul>
+<h1 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名 </span><br><span class="line">FROM 表名  </span><br><span class="line">WHERE 过滤条件</span><br><span class="line">ORDER BY 列名</span><br><span class="line">LIMIT num;</span><br></pre></td></tr></table></figure>
+<p>根据指定条件检索出的数据行。字符串要用单引号括起来。<code>&lt;&gt;</code>表示不等于，<code>BETWEEN A AND B</code>表示在范围内，包括端点的值。<code>WHERE 列名 IS NULL</code>检索出值为NULL的行。</p>
+<h2 id="逻辑操作符"><a href="#逻辑操作符" class="headerlink" title="逻辑操作符"></a>逻辑操作符</h2><p><code>AND</code>逻辑操作符表示过滤出左右两边都满足条件的行，<code>OR</code>检索出匹配任一条件的行，<code>IN （匹配项）</code>只要在匹配值清单中的行都会被检索出来。<code>NOT</code>否定之后跟的任何条件，可以跟<code>IN,BETWEEN,LIKE,REGEXP</code>等条件。多个条件存在时有计算次序：<code>NOT&gt;AND&gt;OR</code>,最好用括号消除歧义。</p>
+<h2 id="LIKE和通配符"><a href="#LIKE和通配符" class="headerlink" title="LIKE和通配符"></a>LIKE和通配符</h2><p>使用<code>LIKE</code>和通配符进行过滤。有通配符就必须用<code>LIKE</code>。通配符一般用于字符串的查找匹配，因此<code>LIKE</code>后往往需要单引号。<code>%</code>通配符表示任意多的任意字符（NULL除外），<code>_</code>匹配单个任意字符。<code>LIKE</code>相当于=，必须<strong>完全匹配</strong>。在不使用通配符情况下就没必要使用<code>LIKE</code>。</p>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p><code>WHERE 列名 REGEXP &#39;正则表达式&#39;</code><br><code>WHERE</code>子句中用正则表达式进行匹配文本字符串，表示只要<strong>部分匹配</strong>表达式的文本都会被检索。<code>REGEXP BINARY</code>表示区分大小写。<br>正则表达式中：<br><code>.</code>匹配任意一个字符，<code>&#39;字串1|字串2|字串3&#39;</code>表示匹配任意一个。<br><code>&#39;[123]&#39;</code>表示匹配任意一个，<code>&#39;[a-z]&#39;</code>表示匹配范围中的任意一个，<code>&#39;[^1-9]&#39;</code>表示匹配范围之外的任意一个。<br><code>\\</code>表示转义字符，能让特殊字符失去意义参与匹配。<br>预定义的匹配字符集。<br>重复元字符：<code>*</code>:0个或多个,<code>+</code>:一个或多个，<code>?</code>：0个或一个，<code>{n}</code>：指定数目重复，<code>{n，}</code>n个以上，<code>{n，m}</code>范围内匹配。<br>定位字符元：<code>^</code>文本开始，<code>$</code>文本结尾。<br>用<code>SELECT 字符串 REGEXP &#39;正则表达式&#39;</code>来测试正则表达式。返回0、1看是否匹配。</p>
+<h1 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h1><p>数据库检索出来的数据经服务器进一步计算之后再返回给客户端。</p>
+<h2 id="拼接字段"><a href="#拼接字段" class="headerlink" title="拼接字段"></a>拼接字段</h2><p><code>SELECT Concat(列名1,&#39;(&#39;,列名2&#39;)&#39;) AS 别名 FROM 表名</code>把同一行的给定不同字段的数据字符串连接起来形成一个长串，并把返回的计算列命名为一个别名。别名不影响原始数据库中的列名。可以用Rtrim(列名)去除值右边的所有空格Ltrim去除左边,Trim(列名)去除左右所有空格。</p>
+<h2 id="计算字段"><a href="#计算字段" class="headerlink" title="计算字段"></a>计算字段</h2><p>可以使用+-<em>/的计算字段。SELECT语句可以测试计算字段，如：`SELECT 列名</em>num`。</p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="文本处理函数"><a href="#文本处理函数" class="headerlink" title="文本处理函数"></a>文本处理函数</h2><ul>
+<li>Left(列名，长度):返回串左边的字符</li>
+<li>Right(列名，长度)：右边</li>
+<li>Length(列名)：返回串的长度</li>
+<li>Locate(‘字串’，列名)：找出字串，返回字串开始位置</li>
+<li>Lower()：转为小写</li>
+<li>Upper()：大写</li>
+<li>RTrim()：去空格</li>
+<li>LTrim()</li>
+<li>Trim()</li>
+<li>Soundex()：发音相近的值匹配</li>
+</ul>
+<h2 id="日期和时间处理函数"><a href="#日期和时间处理函数" class="headerlink" title="日期和时间处理函数"></a>日期和时间处理函数</h2><p>日期（date）：’yyy-mm-dd’,<br>日期时间（datetime）：’yyy-mm-dd hh:mm:ss’,<br>时间（time）：’hh:mm:ss’，<br>是三种新的数据格式，不同于字符型或是数值型。<br><code>DATE()</code>返回日期（date格式，注意单引号），<code>Day()</code>返回天数，<code>Month()</code>返回月份，<code>Year()</code>返回年份，上述三个返回的都是数值型。<code>Now()</code>返回日期时间（datetime），日期可用<code>BETWEEN 日期一 AND 日期二</code> 进行过滤。也可只用年份，月份过滤。</p>
+<h2 id="数值处理函数"><a href="#数值处理函数" class="headerlink" title="数值处理函数"></a>数值处理函数</h2><p>Abs()绝对值<br>Cos()三角函数<br>Mod()取余<br>Pi()返回圆周率<br>Rand()返回一个随机数</p>
+<h1 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h1><p>聚集函数，把一列的所有行计算返回一个值。</p>
+<ol>
+<li>AVG()<br>求特定列的品均值，只能用于数值列，可用WHERE子句过滤出特定的行再平均。忽略NULL行。</li>
+<li>COUNT()<br>COUNT(*)对表中所有行计数，包括有的列是NULL的行。COUNT(列名)只对特定列不为NULL的行计数。同样可用WHERE子句过滤。</li>
+<li>MAX() MIN()<br>返回给定列的最大、最小值，忽略NULL，可对数值、字符、日期列操作。可用WHERE。</li>
+<li>SUM()<br>返回指定列的和，必须对数值列，忽略NULL行，可用WHERE。</li>
+</ol>
+<p>聚集函数括号内列名前DISTINCT关键字可指定只对不重复的行值运算。一般用于SUM和AVG和COUNT，不能用于COUNT(*)。</p>
+<h2 id="数据分组"><a href="#数据分组" class="headerlink" title="数据分组"></a>数据分组</h2><p>聚集函数只返回一个值，希望对特定字段的记录进行聚集计算汇总出各个分组的结果。<br><code>GROUP BY 列名</code>按指定列排序并分组数据，相同的字段值在一组，可以对每个组而不是对整个结果进行聚集。<code>GROUP BY</code>可以提供多个组合列作为分组依据，但不能是聚集函数，所有NULL值被分到一组内，<code>GROUP BY</code>在<code>WHERE</code>之后<code>ORDER BY</code>之前。另外，<strong>SELECT语句中的每个列（聚集函数除外）都必须在ORDER BY 子句中给出</strong>，否则每个记录就对应不上。<br>用<code>HAVING</code>过滤分组，是对分组之后计算结果的过滤，通常过滤条件是聚集函数（多是SELECT后指定的）加上逻辑判断。<code>WHERE</code>是行过滤，是在分组前的过滤，<code>HAVING</code>也能进行行过滤。<code>`GROUP BY</code>分组之后虽然能进行排序，但还是应该明确<code>ORDER BY</code>来指定排序规则，<strong>排序只能根据分组的列名或者是相应聚集函数</strong>。</p>
+<h2 id="SELECT-子句顺序"><a href="#SELECT-子句顺序" class="headerlink" title="SELECT 子句顺序"></a>SELECT 子句顺序</h2><p>SELECT、FROM、WHERE、GROUP BY、HAVING、ORDER BY、LIMIT。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持是我创造源源不断地动力</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Chaos 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/26/TCP-IP-part13-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="next" title="TCP-IP-part13-网络安全">
+                <i class="fa fa-chevron-left"></i> TCP-IP-part13-网络安全
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/05/MySQL-2/" rel="prev" title="MySQL-2">
+                MySQL-2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/portrait.png"
+                alt="Chaos" />
+            
+              <p class="site-author-name" itemprop="name">Chaos</p>
+              <p class="site-description motion-element" itemprop="description">抬头做人，低头做事</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Taurus-Chao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shichao@nuaa.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5585690403" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://user.qzone.qq.com/458650521" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-qq"></i>QQ</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://iconfont.cn/" title="在线Icon库" target="_blank">在线Icon库</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://soogif.com/compress" title="Gif图片压缩工具" target="_blank">Gif图片压缩工具</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.videofk.com/" title="视频在线解析下载" target="_blank">视频在线解析下载</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.1sj.tv/" title="字幕生成" target="_blank">字幕生成</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.allhistory.com/" title="全历史网站" target="_blank">全历史网站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hellofont.cn/" title="字体网站" target="_blank">字体网站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sobooks.cc" title="电子书" target="_blank">电子书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.aigei.com/" title="各种素材" target="_blank">各种素材</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chongbuluo.com/" title="虫部落,搜索" target="_blank">虫部落,搜索</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库和SQL的介绍"><span class="nav-number">2.</span> <span class="nav-text">数据库和SQL的介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL"><span class="nav-number">3.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#检索"><span class="nav-number">4.</span> <span class="nav-text">检索</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#排序"><span class="nav-number">5.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过滤数据"><span class="nav-number">6.</span> <span class="nav-text">过滤数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑操作符"><span class="nav-number">6.1.</span> <span class="nav-text">逻辑操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIKE和通配符"><span class="nav-number">6.2.</span> <span class="nav-text">LIKE和通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">6.3.</span> <span class="nav-text">正则表达式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建计算字段"><span class="nav-number">7.</span> <span class="nav-text">创建计算字段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拼接字段"><span class="nav-number">7.1.</span> <span class="nav-text">拼接字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算字段"><span class="nav-number">7.2.</span> <span class="nav-text">计算字段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">8.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文本处理函数"><span class="nav-number">8.1.</span> <span class="nav-text">文本处理函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期和时间处理函数"><span class="nav-number">8.2.</span> <span class="nav-text">日期和时间处理函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值处理函数"><span class="nav-number">8.3.</span> <span class="nav-text">数值处理函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#汇总数据"><span class="nav-number">9.</span> <span class="nav-text">汇总数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据分组"><span class="nav-number">9.1.</span> <span class="nav-text">数据分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SELECT-子句顺序"><span class="nav-number">9.2.</span> <span class="nav-text">SELECT 子句顺序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaos</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+-->
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

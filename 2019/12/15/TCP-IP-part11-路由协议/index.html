@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="ChaosHill">
 <meta property="og:description" content="前言TCP&#x2F;IP相关内容第十一部分，包含：  路由控制 路由算法 RIP OSPF BGP MPLS">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-21T13:32:53.144Z">
+<meta property="og:updated_time" content="2019-12-26T14:56:07.423Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -356,9 +356,9 @@
 <li>RIP</li>
 <li>OSPF</li>
 <li>BGP</li>
-<li>MPLS</li>
+<li>MPLS<a id="more"></a>
+</li>
 </ul>
-<a id="more"></a>
 <h1 id="一、路由控制"><a href="#一、路由控制" class="headerlink" title="一、路由控制"></a>一、路由控制</h1><p>路由控制即路由表制作的过程。路由控制分为<strong>静态</strong>和<strong>动态</strong>两个类型。静态路由是事先设置好路由信息并固定不再更改。而动态路由是让控制信息在路由协议执行过程中自动设置。</p>
 <p>静态路由通常由使用者手工操作完成。其缺点在于管理者负担大，需要对所有路由器进行维护，且发生故障时无法自动绕过。动态路由只需设置好路由协议，在新增网络的时候只需设置一个路由器而不用更改所有路由器，减少管理员负担。且网络发生故障时会绕过节点。缺点是交换路由信息给网络带来负荷。</p>
 <p>动态路由的基础是路由器给相邻的路由器发送自己已知的网络连接信息，并不断依次传播。直至整个网络都了解之后即制作完成路由表。</p>
@@ -607,7 +607,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -620,7 +620,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -747,7 +747,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言对MySQL概念常用命令的总结第四部分:字符集和校对用户管理更好的使用MySQLMySQL常用的数据类型">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL-4">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;17&#x2F;MySQL-4&#x2F;index.html">
+<meta property="og:site_name" content="ChaosHill">
+<meta property="og:description" content="前言对MySQL概念常用命令的总结第四部分:字符集和校对用户管理更好的使用MySQLMySQL常用的数据类型">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-17T15:32:48.985Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/17/MySQL-4/"/>
+
+
+
+
+
+  <title>MySQL-4 | ChaosHill</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ChaosHill</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Treasure-house</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/17/MySQL-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaos">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/portrait.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChaosHill">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL-4</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-17T22:09:51+08:00">
+                2020-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对MySQL概念常用命令的总结第四部分:<br>字符集和校对<br>用户管理<br>更好的使用MySQL<br>MySQL常用的数据类型<br><a id="more"></a></p>
+<h1 id="字符集和校对"><a href="#字符集和校对" class="headerlink" title="字符集和校对"></a>字符集和校对</h1><p>字符集：为字母和符号的集合。不同语言是用不同的字符集。<br>编码：某个字符集成员的内部表示。<br>校对：规定字符如何比较，用于排序。</p>
+<p>服务器、数据库、表都可以选择使用哪种字符集和校对。</p>
+<p><code>SHOW CHARACTER SET</code>查看所有可用字符集及其默认校对。<br><code>SHOW COLLATIONS</code>查看所有可用校对和适用的字符集。<code>_cs</code>区分大小写<code>_ci</code>不区分大小写。<br>确定所用的字符集和校对。<br><code>SHOW VARIABLES LIKE &#39;character%&#39;</code><br><code>SHOW VARIABLES LIKE &#39;collation%&#39;</code><br>对一个表使用指定的字符集和校对：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE ..</span><br><span class="line">(</span><br><span class="line">    ...</span><br><span class="line">)DEFAULT CHARACTER SET hebrew</span><br><span class="line"> COLLATE hebrew_general_ci;</span><br></pre></td></tr></table></figure><br>不指定COLLATE则用默认校对，不指定字符集则用数据库的默认字符集。<br>也可在创建表的时候对某一列指定字符集和校对。也可在ORDER BY、GROUP BY中用COLLATE指定校对。</p>
+<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><p>不同的用户账号可能需要分配不同的读写权限。MySQL Administrator软件提供了图形界面来进行账号权限管理。<br>安装时创建的root用户拥有最高权限。一般不用。<br>用户信息都在mysql这个系统数据库中，可以修改它完成用户创建和删除、修改，但一般不对它修改，而是通过指令间接修改它（更安全）。一般会用它是获得用户列表（user表、user列）。</p>
+<p><code>CREATE USER 用户名 IDENTIFIED BY &#39;明文密码&#39;；</code><br>密码可不在这里给出，在后面再设。密码以明文给出，但在user表中是加密的。</p>
+<p><code>RENAME USER 用户名 TO 新用户名</code>重命名用户。</p>
+<p><code>DROP USER 用户名</code>删除用户账号。</p>
+<p>一开始创建完的用户没有任何权限，不能访问任何数据库，只能登录上来。<br><code>SHOW GRANTS FOR 用户名</code>查看用户账号的权限。<br>不指定主机名时认为是默认主机名，用%表示，否则应该是<code>&#39;用户名&#39;@&#39;主机名&#39;</code></p>
+<p><code>GRANT SELECT,INSERT ON crashcourse.* TO 用户</code>给用户授予对crashcourse数据库中所有表的读权限和插入权限。<br><code>REVOKE SELECT ON ... FROM 用户</code>取消读权限。<br><code>GRANT/REVOKE ALL</code>赋予/取消所有权限<br>ON后面可以是：</p>
+<ul>
+<li><code>*.*</code>所有数据库所有表</li>
+<li><code>database.*</code>某数据库中的所有表</li>
+<li><code>datebase.table</code>特定表</li>
+<li>特定列</li>
+<li>特定存储过程</li>
+</ul>
+<p>更改口令：<br><code>SET PASSWORD FOR 用户名=Password(&#39;明文密码&#39;)</code>不指定用户名则设置当前用户的密码。</p>
+<h1 id="更好的使用MySQL"><a href="#更好的使用MySQL" class="headerlink" title="更好的使用MySQL"></a>更好的使用MySQL</h1><p><code>HELP ..</code>获取帮助</p>
+<p><code>SHOW VARIABLES</code> <code>SHOW STATUS</code>查看一些默认设置</p>
+<p>存储过程要比逐条执行MySQL语句效率高。</p>
+<p>MySQL是多线程，用<code>SHOW PROCESSLIST</code>来查看进程的状态。</p>
+<p>尽量不要用<code>SELECT *</code></p>
+<p>导入、插入数据时，最好关闭自动提交，甚至删除索引（索引会降低插入效率），之后再重建索引。</p>
+<p>WHERE返回结果用时太长，就要考虑这列作为索引。</p>
+<p>一系列<code>OR</code>最好用<code>UNION</code>代替</p>
+<p><code>LIKE</code>很慢，用<code>FULLTEXT</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名</span><br><span class="line">ADD (UNIQUE) INDEX 索引名(列名1，列名2...)</span><br></pre></td></tr></table></figure>
+<p>UNIQUE关键字可选，保证字段记录值唯一。</p>
+<p>MySQL的默认端口号为3306。</p>
+<p>Navicat是一个轻量级的可视化数据管理工具。</p>
+<p>可以使用脚本来完成一系列SQL语句。脚本为.sql文件。执行前要注意选择的数据库是否正确。之后用<br><code>source 脚本绝对路径</code>来执行脚本。</p>
+<p><code>CREATE/DROP DATABASE 数据库名称</code>创建/删除数据库。</p>
+<h1 id="MySQL常用的数据类型"><a href="#MySQL常用的数据类型" class="headerlink" title="MySQL常用的数据类型"></a>MySQL常用的数据类型</h1><h2 id="字符串数据类型"><a href="#字符串数据类型" class="headerlink" title="字符串数据类型"></a>字符串数据类型</h2><p>定长：CHAR,创建时必须指定长度CHAR(1~255)，否则默认为CHAR(1)<br>变长：TEXT，最大64K长度<br>串值必须用引号括起来。</p>
+<h2 id="数值型"><a href="#数值型" class="headerlink" title="数值型"></a>数值型</h2><p>整数：INT<br>长整数：BIGINT<br>布尔型：BOOLEAN或BOOL<br>双精度浮点：DOUBLE<br>单精度浮点：FLOAT<br>货币一般用：DECIMAL(8,2)</p>
+<h2 id="二进制类型"><a href="#二进制类型" class="headerlink" title="二进制类型"></a>二进制类型</h2><p>二进制数据可以存储任何数据，包括文本、图像、音频…<br>BLOB：最大长度64KB</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持是我创造源源不断地动力</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Chaos 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/07/MySQL-3/" rel="next" title="MySQL-3">
+                <i class="fa fa-chevron-left"></i> MySQL-3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/portrait.png"
+                alt="Chaos" />
+            
+              <p class="site-author-name" itemprop="name">Chaos</p>
+              <p class="site-description motion-element" itemprop="description">抬头做人，低头做事</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Taurus-Chao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shichao@nuaa.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5585690403" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://user.qzone.qq.com/458650521" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-qq"></i>QQ</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://iconfont.cn/" title="在线Icon库" target="_blank">在线Icon库</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://soogif.com/compress" title="Gif图片压缩工具" target="_blank">Gif图片压缩工具</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.videofk.com/" title="视频在线解析下载" target="_blank">视频在线解析下载</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.1sj.tv/" title="字幕生成" target="_blank">字幕生成</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.allhistory.com/" title="全历史网站" target="_blank">全历史网站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hellofont.cn/" title="字体网站" target="_blank">字体网站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://sobooks.cc" title="电子书" target="_blank">电子书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.aigei.com/" title="各种素材" target="_blank">各种素材</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.chongbuluo.com/" title="虫部落,搜索" target="_blank">虫部落,搜索</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符集和校对"><span class="nav-number">2.</span> <span class="nav-text">字符集和校对</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户管理"><span class="nav-number">3.</span> <span class="nav-text">用户管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更好的使用MySQL"><span class="nav-number">4.</span> <span class="nav-text">更好的使用MySQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL常用的数据类型"><span class="nav-number">5.</span> <span class="nav-text">MySQL常用的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串数据类型"><span class="nav-number">5.1.</span> <span class="nav-text">字符串数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值型"><span class="nav-number">5.2.</span> <span class="nav-text">数值型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制类型"><span class="nav-number">5.3.</span> <span class="nav-text">二进制类型</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaos</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+-->
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
