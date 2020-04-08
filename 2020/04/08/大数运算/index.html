@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="通信网络," />
+  <meta name="keywords" content="数据结构与算法," />
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="前言TCP&#x2F;IP相关内容第九部分，包含：  传输层的作用 端口号 UDP">
-<meta name="keywords" content="通信网络">
+<meta name="description" content="前言大数运算的阶乘与乘法问题。">
+<meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TCP-IP-part9-TCP与UDP（一）">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;TCP-IP-part9-TCP%E4%B8%8EUDP%EF%BC%88%E4%B8%80%EF%BC%89&#x2F;index.html">
+<meta property="og:title" content="大数运算">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;08&#x2F;%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%97&#x2F;index.html">
 <meta property="og:site_name" content="ChaosHill">
-<meta property="og:description" content="前言TCP&#x2F;IP相关内容第九部分，包含：  传输层的作用 端口号 UDP">
+<meta property="og:description" content="前言大数运算的阶乘与乘法问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-26T14:55:56.491Z">
+<meta property="og:updated_time" content="2020-04-08T10:31:03.507Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/30/TCP-IP-part9-TCP与UDP（一）/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/08/大数运算/"/>
 
 
 
 
 
-  <title>TCP-IP-part9-TCP与UDP（一） | ChaosHill</title>
+  <title>大数运算 | ChaosHill</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/30/TCP-IP-part9-TCP%E4%B8%8EUDP%EF%BC%88%E4%B8%80%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/08/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaos">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">TCP-IP-part9-TCP与UDP（一）</h1>
+          <h1 class="post-title" itemprop="name headline">大数运算</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-30T22:31:26+08:00">
-                2019-11-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T18:22:30+08:00">
+                2020-04-08
               </time>
             
 
@@ -349,33 +349,12 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TCP/IP相关内容第九部分，包含：</p>
-<ul>
-<li>传输层的作用</li>
-<li>端口号</li>
-<li>UDP</li>
-</ul>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大数运算的阶乘与乘法问题。</p>
 <a id="more"></a>
-<h1 id="一、传输层的作用"><a href="#一、传输层的作用" class="headerlink" title="一、传输层的作用"></a>一、传输层的作用</h1><p>传输层的作用在于把数据包送到正确的应用程序中，根据端口号识别具体的程序。应用程序的实质是处理应用层的协议。TCP/IP多数应用协议要求客户端、服务端存在。服务端程序监听端口，叫做<strong>守护进程</strong>。如httpd和sshd守护进程，本质上也就是服务器上的应用程序。不需要逐个将他们启动，只需要超级守护进程inetd代表他们接受请求，由它复刻、转换为各个进程。确认数据包发给哪个守护进程，用端口号可以轻松识别。</p>
-<h2 id="两种传输层协议TCP和UDP"><a href="#两种传输层协议TCP和UDP" class="headerlink" title="两种传输层协议TCP和UDP"></a>两种传输层协议TCP和UDP</h2><p>TCP是面向连接的，可靠的流协议。UDP是无连接的、不可靠传输协议。TCP是面向字节流发送的，字节按序进入缓存区，分段后进行传输，收方TCP重排后交付给应用层（IP层不需要负责分片）。要等前面的字节确认接受了才能发后面的字节。而UDP面向报文，应用程序分好包好UDP加个首部就直接一股脑丢给IP层发送，由IP层分片和重装，收方UDP收到的就是一整个长长的报文，也不用排序，不具备重发功能，直接交付给上层。</p>
-<p>可靠的数据传输用TCP，实时通信和多播广播用UDP。</p>
-<h1 id="二、端口号"><a href="#二、端口号" class="headerlink" title="二、端口号"></a>二、端口号</h1><p>端口号是识别同一台主机不同应用程序的地址，也被称为程序地址。</p>
-<p>一个通信要用五个要素确定，源IP地址、目的IP地址、协议号、源端口号、目的端口号。例如我在电脑上打开两个浏览器浏览同一个网页，此时只有源端口号不一样，其余都一样，但仍是两个通信。</p>
-<p>端口只是数据接收的一个窗口，理论上任何一个窗口可以由任意一个应用程序监听并把数据拿去解析，但在实际中往往有约定，尤其是服务器，应该采用约定的程序去监听约定的端口。</p>
-<p>服务器端静态分配：（针对每个服务要明确一个端口，否则客户端不知道往哪发）<br>知名端口号：0~1023<br>注册端口号：1024~49151<br>客户端动态分配：因为请求总是从客户端发起，因此服务器总是能知道对方的端口号，因此客户端的端口号可以交给操作系统决定，根据时序分配法，每需要一个新的端口就在之前分配的加1.<br>范围：49152~65535</p>
-<p>端口号一致，协议不一致也被认为是不同的通信。但只要端口号一致，上层提供的服务就是一致的，也就是一个端口只对应一种守护进程来监听，不管你是从哪种传输层过来的，不管可靠不可靠，去掉首部之后都是一样的，应用程序总是能够处理。</p>
-<blockquote>
-<blockquote>
-<p>知名端口号：<br>TCP：<br>20:ftp-data<br>21:ftp<br>22:ssh<br>23:telnet<br>25:SMTP<br>53:DNS<br>80:http<br>179:bgp<br>UDP<br>53:DNS<br>67:DHCP<br>68:DHCP<br>161:SNMP<br>520:RIP</p>
-</blockquote>
-</blockquote>
-<h1 id="三、UDP"><a href="#三、UDP" class="headerlink" title="三、UDP"></a>三、UDP</h1><p>利用IP提供面向无连接的通信服务。只要一收到应用程序发来的数据就立即打上UDP头部发送到网络上，不管分片，也不会重发。</p>
-<p>UDP应用：</p>
-<ul>
-<li>包总量较少的通信：DNS、SNMP</li>
-<li>即时通信：视频音频</li>
-<li>广播、多播通信：RIP、DHCP</li>
-</ul>
+<hr>
+<p>大数运算的核心思想是用一个数组来代替一个非常大的数。乘法的过程类似手工竖乘。</p>
+<h1 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h1><p>用一个数组记录结果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">void bigFact(int n)</span><br><span class="line">&#123;</span><br><span class="line">	vector&lt;int&gt; a(1000, 0);</span><br><span class="line">	a[0] = 1;</span><br><span class="line">	int carry = 0;</span><br><span class="line">	int digits = 1;//记录有效的数字位数</span><br><span class="line">	for (int i = 2; i &lt;= n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int j = 0;</span><br><span class="line">		for (carry = 0; j &lt; digits; j++)//从低位开始，每一位乘上i</span><br><span class="line">		&#123;</span><br><span class="line">			int tmp = a[j] * i+carry;</span><br><span class="line">			a[j] = tmp % 10;</span><br><span class="line">			carry = tmp / 10;</span><br><span class="line">		&#125;</span><br><span class="line">		while (carry)</span><br><span class="line">		&#123;</span><br><span class="line">			a[++digits - 1] = carry % 10;</span><br><span class="line">			carry /= 10;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = digits-1; i &gt;=0; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; a[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h1><p>需要用两个数组记录两个乘数，和一个res数组记录结果。进位在每位相乘之后进行。最后要处理结果前面的0。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">void bigMul()</span><br><span class="line">&#123;</span><br><span class="line">	string a, b;</span><br><span class="line">	vector&lt;int&gt;x, y,res;</span><br><span class="line">	int i, j;</span><br><span class="line">	while (cin&gt;&gt;a&gt;&gt;b)</span><br><span class="line">	&#123;</span><br><span class="line">		int lena = a.size();</span><br><span class="line">		int lenb = b.size();</span><br><span class="line">		x.resize(lena, 0);</span><br><span class="line">		y.resize(lenb, 0);</span><br><span class="line">		res.resize(lena + lenb, 0);</span><br><span class="line"></span><br><span class="line">		for (i = 0; i &lt; lena; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			x[lena - 1 - i] = a[i] - &apos;0&apos;;</span><br><span class="line">		&#125;</span><br><span class="line">		for (j = 0; j &lt; lenb; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			y[lenb - 1 - j] = b[j] - &apos;0&apos;;</span><br><span class="line">		&#125;</span><br><span class="line">		for (i = 0; i &lt; lena; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			for (int j = 0; j &lt; lenb; j++)</span><br><span class="line">				res[i + j] += x[i] * y[j];</span><br><span class="line">		&#125;</span><br><span class="line">		int carry = 0;</span><br><span class="line">		for (i = 0; i &lt; res.size(); i++)</span><br><span class="line">		&#123;</span><br><span class="line">			int tmp = carry + res[i];</span><br><span class="line">			carry = tmp / 10;</span><br><span class="line">			res[i] = tmp % 10;</span><br><span class="line">		&#125;</span><br><span class="line">		for (i = res.size()-1; i &gt;= 0; i--)</span><br><span class="line">		&#123;</span><br><span class="line">			if (res[i] != 0)break;</span><br><span class="line">		&#125;</span><br><span class="line">		for (j = i; j &gt;= 0; j--)</span><br><span class="line">			cout &lt;&lt; res[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可以利用分治策略达到更快的效率。</p>
 
       
     </div>
@@ -417,7 +396,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C/" rel="tag"># 通信网络</a>
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
           
         </div>
       
@@ -430,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/30/TCP-IP-part8-IP%E5%8D%8F%E8%AE%AE%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="TCP-IP-part8-IP协议相关技术（二）">
-                <i class="fa fa-chevron-left"></i> TCP-IP-part8-IP协议相关技术（二）
+              <a href="/2020/01/17/MySQL-4/" rel="next" title="MySQL-4">
+                <i class="fa fa-chevron-left"></i> MySQL-4
               </a>
             
           </div>
@@ -439,10 +418,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/08/TCP-IP-part10-TCP%E4%B8%8EUDP%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="prev" title="TCP-IP-part10-TCP与UDP（二）">
-                TCP-IP-part10-TCP与UDP（二） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -670,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、传输层的作用"><span class="nav-number">2.</span> <span class="nav-text">一、传输层的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种传输层协议TCP和UDP"><span class="nav-number">2.1.</span> <span class="nav-text">两种传输层协议TCP和UDP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、端口号"><span class="nav-number">3.</span> <span class="nav-text">二、端口号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、UDP"><span class="nav-number">4.</span> <span class="nav-text">三、UDP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阶乘"><span class="nav-number">2.</span> <span class="nav-text">阶乘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#乘法"><span class="nav-number">3.</span> <span class="nav-text">乘法</span></a></li></ol></div>
             
 
           </div>
